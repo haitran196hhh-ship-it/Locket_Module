@@ -30,7 +30,7 @@ var duyvinh09 = {
   },
   locketGold = {
       grace_period_expires_date: null,
-      purchase_date: "2004-02-03T10:10:14Z",
+      purchase_date: "2010-07-30T10:10:14Z",
       product_identifier: "locket_1600_1y",
       expires_date: "9999-01-09T10:10:14Z"
   };
