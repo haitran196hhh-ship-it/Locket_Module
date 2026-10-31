@@ -56,8 +56,8 @@ if (ua.includes("Locket")) {
             feature_set: [
                 {
                     title: "Hẹ Hẹ Hẹ ✨",
-                    body: "Mấy con gà 💛",
-                    imageURL: "https://i.ibb.co/d0FDT94k/tu-t.jpg"
+                    body: " TRẦN HẢI NÈ MẤY EM  💛",
+                    imageURL: "okkkkkk"
                 }
             ],
             primary_button_title: "Xong",
