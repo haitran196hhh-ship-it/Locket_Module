@@ -1,6 +1,5 @@
 // ============================================================
-// Locket Remote Config Rewrite
-// Endpoint: firebaseremoteconfig.googleapis.com
+// Locket Remote Config Rewrite - Bản Cực Hạn (Video 60s, Khung Động)
 // Mod by: TranHai307
 // ============================================================
 
@@ -12,7 +11,7 @@ if (ua.includes("Locket")) {
     obj.entries = obj.entries || {};
 
     // ============================================================
-    // 1. CẤU HÌNH GOLD, FEATURE GATES & PAYWALL
+    // 1. CẤU HÌNH GOLD, FEATURE GATES & PAYWALL (POPUP KHÁ BẢNH)
     // ============================================================
     Object.assign(obj.entries, {
         feature_gates: JSON.stringify({
@@ -53,9 +52,9 @@ if (ua.includes("Locket")) {
             title: "Lên Locket Gold rồi đó BẠN 😎",
             feature_set: [
                 {
-                    title: "CHÀO MẤY TÌNH IU  ✨",
-                    body: " TRẦN HẢI NHAA  💛",
-                    imageURL: "https://i.ibb.co/0RGR62j1/1793524189318-213581069014239013-1206618570493123949-7650d70b05730554d8e4df37b1b379f1.jpg"
+                    title: "CHÀO MẤY TÌNH IU ✨",
+                    body: " TRẦN HẢI NHAA 💛",
+                    imageURL: "https://i.ibb.co/Q7P3NNYF/Vi-sao-Kha-Banh-tro-thanh-hien-tuong-dinh-dam-tren-mang-xa-hoi-khabanh-1554192528-width660height597.jpg"
                 }
             ],
             primary_button_title: "Xong",
@@ -70,7 +69,7 @@ if (ua.includes("Locket")) {
     });
 
     // ============================================================
-    // 2. CHẶN QUẢNG CÁO & TẮT TRACKING (SENTRY)
+    // 2. CHẶN QUẢNG CÁO & SENTRY
     // ============================================================
     Object.assign(obj.entries, {
         history_ads_mode: "off",
@@ -90,8 +89,8 @@ if (ua.includes("Locket")) {
         sentry_profiles_sample_rate: "0"
     });
 
-  // ============================================================
-    // 3. CAMERA, VIDEO, FILTERS & UPLOAD QUALITY
+    // ============================================================
+    // 3. ÉP CHẤT LƯỢNG VIDEO SIÊU NÉT 15Mbps & DÀI 60 GIÂY
     // ============================================================
     Object.assign(obj.entries, {
         camera: JSON.stringify({
@@ -107,55 +106,49 @@ if (ua.includes("Locket")) {
             telephoto: true,
             srgb: true,
             lanczos: true,
-            quality_mbps: 5.0, // Nét căng khi quay trực tiếp
-            qualityMbps: 5.0
+            quality_mbps: 15.0, // Ép cực nét
+            qualityMbps: 15.0
         }),
         camera_roll: JSON.stringify({
-            gold_max_duration: 60.0,
+            gold_max_duration: 60.0, 
             goldMaxDuration: 60.0,
-            video_max_duration: 60.0,
+            video_max_duration: 60.0, 
             videoMaxDuration: 60.0,
             max_duration: 60.0,
             maxDuration: 60.0,
-            trim_max_duration: 60.0, // Mở giới hạn thanh trượt cắt video lên 60s
+            trim_max_duration: 60.0, 
             trimMaxDuration: 60.0,
             camera_roll_max_duration: 60.0,
-            quality_mbps: 8.0, // Ép Locket giữ chất lượng gốc khi up video từ album
-            qualityMbps: 8.0,
+            quality_mbps: 15.0, // Không nén video up từ album
+            qualityMbps: 15.0,
             flash_button: true
         }),
-        live_photos: JSON.stringify({
-            capture: true,
-            video: true,
-            viewing: true,
-            catch_up: true,
-            widget_looping_mode: "never"
-        }),
+        live_photos: JSON.stringify({ capture: true, video: true, viewing: true, catch_up: true, widget_looping_mode: "never" }),
         camera_filter_config: JSON.stringify({
-        allows_custom_filters: true,
-        show_filter_button: true,
-        sheet_enabled: true,
-        open_sheet_immediately: false, // Để false để tránh app bị crash khi vừa mở lên
-        force_fetch_all_filters: true, // Ép tải tất cả filter
-        precache_filters: true,        // Lưu cache filter vào máy
-        sheet_filters: [
-            { title: { en: "Goofy" }, filter_ids: ["okay_wig", "influencer", "looks_maxxing", "toothless", "bye_brows"] },
-            { title: { en: "Looks" }, filter_ids: ["bowling_ball", "blonde_bleached", "beard", "bob_cut", "buns", "tatted", "mohawk", "braces", "bye_brows"] },
-            { title: { en: "Celebrate" }, filter_ids: ["slimed", "princess", "disco_lights", "cash_money", "happy_birthday"] },
-            { title: { en: "Cute" }, filter_ids: ["cutesy", "sticker_face", "flower_crown", "love_bug"] },
-            { title: { en: "Costumes" }, filter_ids: ["wedding", "cowboy_cowgirl", "giraffe", "clown"] },
-            { title: { en: "Holidays" }, filter_ids: ["easter_bunney_cutout", "easter_chick_cutout", "bearded", "leprechaun", "lucky_face", "sweet_hearts", "elf_cutout", "santa_cutout", "frosty"] }
-        ],
-        picker_filters: [
-            "okay_wig", "influencer", "looks_maxxing", "toothless", "bye_brows",
-            "bowling_ball", "blonde_bleached", "beard", "bob_cut", "buns",
-            "tatted", "mohawk", "braces", "slimed", "princess",
-            "disco_lights", "cash_money", "happy_birthday", "cutesy", "sticker_face",
-            "flower_crown", "love_bug", "wedding", "cowboy_cowgirl", "giraffe",
-            "clown", "easter_bunney_cutout", "easter_chick_cutout", "bearded", "leprechaun",
-            "lucky_face", "sweet_hearts", "elf_cutout", "santa_cutout", "frosty"
-        ]
-    }),
+            allows_custom_filters: true,
+            show_filter_button: true,
+            sheet_enabled: true,
+            open_sheet_immediately: false, 
+            force_fetch_all_filters: true, 
+            precache_filters: true,        
+            sheet_filters: [
+                { title: { en: "Goofy" }, filter_ids: ["okay_wig", "influencer", "looks_maxxing", "toothless", "bye_brows"] },
+                { title: { en: "Looks" }, filter_ids: ["bowling_ball", "blonde_bleached", "beard", "bob_cut", "buns", "tatted", "mohawk", "braces", "bye_brows"] },
+                { title: { en: "Celebrate" }, filter_ids: ["slimed", "princess", "disco_lights", "cash_money", "happy_birthday"] },
+                { title: { en: "Cute" }, filter_ids: ["cutesy", "sticker_face", "flower_crown", "love_bug"] },
+                { title: { en: "Costumes" }, filter_ids: ["wedding", "cowboy_cowgirl", "giraffe", "clown"] },
+                { title: { en: "Holidays" }, filter_ids: ["easter_bunney_cutout", "easter_chick_cutout", "bearded", "leprechaun", "lucky_face", "sweet_hearts", "elf_cutout", "santa_cutout", "frosty"] }
+            ],
+            picker_filters: [
+                "okay_wig", "influencer", "looks_maxxing", "toothless", "bye_brows",
+                "bowling_ball", "blonde_bleached", "beard", "bob_cut", "buns",
+                "tatted", "mohawk", "braces", "slimed", "princess",
+                "disco_lights", "cash_money", "happy_birthday", "cutesy", "sticker_face",
+                "flower_crown", "love_bug", "wedding", "cowboy_cowgirl", "giraffe",
+                "clown", "easter_bunney_cutout", "easter_chick_cutout", "bearded", "leprechaun",
+                "lucky_face", "sweet_hearts", "elf_cutout", "santa_cutout", "frosty"
+            ]
+        }),
         camera_roll_preview_enabled: "true",
         camera_roll_video_enabled: "true",
         camera_roll_video_upload_enabled: "true",
@@ -166,9 +159,9 @@ if (ua.includes("Locket")) {
         camera_microphone_enabled: "true",
         audio_session_deactivation_enabled: "true",
         zoom_enabled: "true",
-        upload_main: "true", // Bật TRUE để up file gốc không qua nén
-        upload_main_image_quality: "1.0", // 100% chất lượng
-        upload_main_image_size: "2048", // Phân giải 2K
+        upload_main: "true", 
+        upload_main_image_quality: "1.0", 
+        upload_main_image_size: "2048", 
         upload_thumbnail_image_quality: "0.9",
         upload_thumbnail_image_size: "1080"
     });
@@ -253,9 +246,8 @@ if (ua.includes("Locket")) {
     // ============================================================
     // 6. WIDGET, THÔNG BÁO & GIAO DIỆN (JOURNAL / PROFILE)
     // ============================================================
-    // Nhận link ảnh từ argument (Hỗ trợ cả truyền trực tiếp hoặc dạng key=value)
     var rawArg = (typeof $argument !== "undefined" && $argument !== "") ? $argument : "";
-    var customFrameUrl = "https://i.ibb.co/1Yt1Dzzy/Shin-chan-1.png";
+    var customFrameUrl = "https://i.ibb.co/1Yt1Dzzy/Shin-chan-1.png"; 
     
     if (rawArg.includes("frame=")) {
         customFrameUrl = decodeURIComponent(rawArg.split("frame=")[1].split("&")[0]);
@@ -263,8 +255,7 @@ if (ua.includes("Locket")) {
         customFrameUrl = rawArg.replace(/"/g, '').trim();
     }
 
-    // Tạo UID động dựa trên tên file ảnh để ép Locket xóa cache khung cũ (Shin-chan)
-    var dynamicUid = "frame_" + customFrameUrl.replace(/[^a-zA-Z0-9]/g, '').slice(-12);
+    var dynamicUid = "frame_" + Date.now();
 
     Object.assign(obj.entries, {
         widget_frame_event_max_images: "10",
@@ -273,32 +264,12 @@ if (ua.includes("Locket")) {
         widget_badge_v2: "true",
         widget_stale_state_enabled: "false",
         widget_last_sent_indicator: "false",
-        widget_sync_token_reload_mode: "clearTokenAlways", // Đổi từ Never sang Always để làm mới widget
+        widget_sync_token_reload_mode: "clearTokenAlways",
         widget_frame_event: JSON.stringify({
             uid: dynamicUid,
             url: customFrameUrl,
             use_local_time_zone: true,
             placement: "overlay",
-            start_at: "2020-01-01T00:00:00",
-            end_at: "2099-12-31T23:59:59"
-        }),
-
-    // Tạo UID động theo link ảnh để ép Locket xóa cache cũ, hiện ngay khung mới
-    var dynamicUid = "frame_" + customFrameUrl.replace(/[^a-zA-Z0-9]/g, '').slice(-12);
-
-    Object.assign(obj.entries, {
-        widget_frame_event_max_images: "10",
-        android_widget_frame_event_enabled: "true",
-        widget_badge_enabled: "true",
-        widget_badge_v2: "true",
-        widget_stale_state_enabled: "false",
-        widget_last_sent_indicator: "false",
-        widget_sync_token_reload_mode: "clearTokenAlways", // Đổi từ Never sang Always để làm mới widget
-        widget_frame_event: JSON.stringify({
-            uid: dynamicUid,
-            url: customFrameUrl,
-            use_local_time_zone: true,
-            placement: "below",
             start_at: "2020-01-01T00:00:00",
             end_at: "2099-12-31T23:59:59"
         }),
@@ -387,10 +358,18 @@ if (ua.includes("Locket")) {
         ]),
         overlay_items: JSON.stringify([
             {
-                section: "🏫 Học Sinh Ngô Quyền",
+                section: "🏫 Học Sinh Ngô Quyền & 11A2",
                 items: [
-                    { overlay_id: "caption:ngo_quyen", source: "remote", caption: { background: { colors: ["#00BFA5", "#64E8C8"] }, icon: { data: "📚", type: "emoji" }, max_lines: 1, text: "HỌC SINH NGÔ QUYỀN NÈ", text_color: "#FFFFFF", type: "static_content" } },
-                    { overlay_id: "caption:lop_11a2", source: "remote", caption: { background: { colors: ["#FF4081", "#F50057"] }, icon: { data: "🏫", type: "emoji" }, max_lines: 1, text: "Lớp 11A2 Nè nha!!!", text_color: "#FFFFFF", type: "static_content" } }
+                    { overlay_id: "caption:ngo_quyen_1", source: "remote", caption: { background: { colors: ["#0F2027", "#203A43", "#2C5364"] }, icon: { data: "🏫", type: "emoji" }, max_lines: 1, text: "THPT Ngô Quyền - Đỉnh lưu Phú Quý", text_color: "#F6E07A", type: "static_content" } },
+                    { overlay_id: "caption:ngo_quyen_2", source: "remote", caption: { background: { colors: ["#004D40", "#00897B"] }, icon: { data: "🔥", type: "emoji" }, max_lines: 1, text: "Học sinh Ngô Quyền - Oai phong lẫm liệt", text_color: "#FFFFFF", type: "static_content" } },
+                    { overlay_id: "caption:ngo_quyen_3", source: "remote", caption: { background: { colors: ["#D32F2F", "#F44336"] }, icon: { data: "🏆", type: "emoji" }, max_lines: 1, text: "Tự hào học sinh Ngô Quyền", text_color: "#FFFFFF", type: "static_content" } },
+                    { overlay_id: "caption:lop_11a2_1", source: "remote", caption: { background: { colors: ["#1A2980", "#26D0CE"] }, icon: { data: "💎", type: "emoji" }, max_lines: 1, text: "Lớp 11A2 đẳng cấp không?", text_color: "#FFFFFF", type: "static_content" } },
+                    { overlay_id: "caption:lop_11a2_2", source: "remote", caption: { background: { colors: ["#FF416C", "#FF4B2B"] }, icon: { data: "👑", type: "emoji" }, max_lines: 1, text: "11A2 - Sinh ra để tỏa sáng", text_color: "#FFFFFF", type: "static_content" } },
+                    { overlay_id: "caption:lop_11a2_3", source: "remote", caption: { background: { colors: ["#F7971E", "#FFD200"] }, icon: { data: "😎", type: "emoji" }, max_lines: 1, text: "11A2 vô địch vũ trụ", text_color: "#111111", type: "static_content" } },
+                    { overlay_id: "caption:chuyen_ban_a", source: "remote", caption: { background: { colors: ["#4B1248", "#F0C27B"] }, icon: { data: "📐", type: "emoji" }, max_lines: 1, text: "Dân khối A khô khan nhưng chân thành", text_color: "#FFFFFF", type: "static_content" } },
+                    { overlay_id: "caption:di_hoc_nhu_di_choi", source: "remote", caption: { background: { colors: ["#34e89e", "#0f3443"] }, icon: { data: "🎒", type: "emoji" }, max_lines: 1, text: "Đi học như đi chơi", text_color: "#FFFFFF", type: "static_content" } },
+                    { overlay_id: "caption:deadline_chua_xong", source: "remote", caption: { background: { colors: ["#cb2d3e", "#ef473a"] }, icon: { data: "💀", type: "emoji" }, max_lines: 1, text: "Deadline chất thành núi", text_color: "#FFFFFF", type: "static_content" } },
+                    { overlay_id: "caption:hoc_hanh_cham_chi", source: "remote", caption: { background: { colors: ["#2980B9", "#6DD5FA", "#FFFFFF"] }, icon: { data: "🤓", type: "emoji" }, max_lines: 1, text: "Gương mặt vàng trong làng học chăm", text_color: "#1A2980", type: "static_content" } }
                 ]
             },
             {
@@ -409,6 +388,21 @@ if (ua.includes("Locket")) {
                     { overlay_id: "caption:color_palette", source: "local", caption: { type: "color_palette" } },
                     { overlay_id: "caption:live", source: "local", caption: { type: "live" } },
                     { overlay_id: "caption:locket_count", source: "local", caption: { type: "locket_count" } },
+                ]
+            },
+            {
+                section: "🎨 Chuyên mục Tiệm Spa & Bà Chị 💆‍♀️",
+                items: [
+                    { overlay_id: "caption:co_tien_goi_dau", source: "remote", caption: { background: { colors: ["#FF9A9E", "#FECFEF"] }, icon: { data: "🫧", type: "emoji" }, max_lines: 1, text: "Cô tiên gội đầu", text_color: "#70445A", type: "static_content" } },
+                    { overlay_id: "caption:goi_dau_duong_suy", source: "remote", caption: { background: { colors: ["#A0C4FF", "#BDE0FE", "#DFF3FF"] }, icon: { data: "🫠", type: "emoji" }, max_lines: 1, text: "Gội đầu dưỡng... suy", text_color: "#23466F", type: "static_content" } },
+                    { overlay_id: "caption:khach_khoe_tho_liet", source: "remote", caption: { background: { colors: ["#343A40", "#6C757D"] }, icon: { data: "💀", type: "emoji" }, max_lines: 1, text: "Khách khỏe, thợ liệt", text_color: "#FFFFFF", type: "static_content" } },
+                    { overlay_id: "caption:lam_dep_cho_doi", source: "remote", caption: { background: { colors: ["#80CBC4", "#B2DFDB"] }, icon: { data: "💅", type: "emoji" }, max_lines: 1, text: "Đang bận làm đẹp cho đời", text_color: "#205953", type: "static_content" } },
+                    { overlay_id: "caption:ban_tay_vang_massage", source: "remote", caption: { background: { colors: ["#F6D365", "#FDA085"] }, icon: { data: "👐", type: "emoji" }, max_lines: 1, text: "Bàn tay vàng làng massage", text_color: "#FFFFFF", type: "static_content" } },
+                    { overlay_id: "caption:spa_my_huong", source: "remote", caption: { background: { colors: ["#E1BEE7", "#F8BBD0"] }, icon: { data: "🧖‍♀️", type: "emoji" }, max_lines: 1, text: "Tiệm Gội Nail Massage Mỹ Hương xin nghe", text_color: "#6A1B9A", type: "static_content" } },
+                    { overlay_id: "caption:healing_time", source: "remote", caption: { background: { colors: ["#B7E4C7", "#D8F3DC"] }, icon: { data: "🌿", type: "emoji" }, max_lines: 1, text: "Healing time tại Spa", text_color: "#24563A", type: "static_content" } },
+                    { overlay_id: "caption:spa_khong_loi_thoat", source: "remote", caption: { background: { colors: ["#FF4E50", "#F9D423"] }, icon: { data: "🚪", type: "emoji" }, max_lines: 1, text: "Spa không lối thoát", text_color: "#FFFFFF", type: "static_content" } },
+                    { overlay_id: "caption:dau_lung_moi_goi", source: "remote", caption: { background: { colors: ["#D7CCC8", "#8D6E63"] }, icon: { data: "🥲", type: "emoji" }, max_lines: 1, text: "Đau lưng mỏi gối tê tay", text_color: "#FFFFFF", type: "static_content" } },
+                    { overlay_id: "caption:vip_massage", source: "remote", caption: { background: { colors: ["#D4AF37", "#FFD700", "#F6E07A"] }, icon: { data: "👑", type: "emoji" }, max_lines: 1, text: "Gói VIP phục vụ tận răng", text_color: "#1A1A1A", type: "static_content" } }
                 ]
             },
             {
