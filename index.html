@@ -18,7 +18,6 @@
         }
         .btn-press:active { transform: scale(0.96); transition: transform 0.1s ease; }
         
-        /* Hiệu ứng khung Kính mờ (Glassmorphism) */
         .glass-card {
             background: rgba(255, 255, 255, 0.75);
             backdrop-filter: blur(20px);
@@ -27,7 +26,6 @@
             box-shadow: 0 10px 40px -10px rgba(0,0,0,0.08);
         }
 
-        /* Khung mô phỏng Widget iOS chuẩn */
         .widget-preview {
             width: 210px;
             height: 210px;
@@ -38,13 +36,11 @@
             background: linear-gradient(135deg, #e0e7ff 0%, #f3e8ff 100%);
         }
         
-        /* Hiệu ứng viền động cho avatar */
         .avatar-ring {
             background: linear-gradient(45deg, #3b82f6, #8b5cf6, #ec4899);
             padding: 3px;
         }
         
-        /* Nhịp đập huy hiệu */
         @keyframes pulse-soft {
             0%, 100% { opacity: 1; }
             50% { opacity: 0.7; }
@@ -125,7 +121,6 @@
                 <i data-feather="star" class="w-4 h-4 mr-2 text-rose-500"></i> Khung Độc Lạ & Hot Trend
             </h2>
             <div class="grid grid-cols-2 gap-3">
-                <!-- Anh thay các file png này lên thư mục assets/ của GitHub nhé -->
                 <button onclick="installDirectFrame('https://raw.githubusercontent.com/haitran196hhh-ship-it/Locket_Module/main/assets/frame_polaroid_640.png', 'Polaroid')" class="btn-press bg-white hover:bg-rose-50 border border-slate-200/80 rounded-2xl p-3 flex flex-col items-center shadow-sm transition-colors">
                     <div class="w-12 h-12 bg-slate-50 rounded-xl mb-2 flex items-center justify-center border border-slate-100"><i data-feather="camera" class="w-6 h-6 text-slate-400"></i></div>
                     <span class="text-xs font-bold text-slate-600">Khung Polaroid</span>
@@ -143,7 +138,6 @@
                     <span class="text-xs font-bold text-slate-600">Khung Trái Tim</span>
                 </button>
             </div>
-            <p class="text-[10px] text-slate-400 text-center mt-3 font-medium">Bổ sung các file PNG thiết kế của bạn vào thư mục "assets" trên GitHub để các nút này hoạt động.</p>
         </div>
 
         <!-- 1. CHỌN KHUNG CÓ SẴN (7 NGÀY) -->
@@ -204,7 +198,6 @@
                     <i data-feather="download-cloud" class="w-4 h-4"></i> Cài Module Gốc (All-in-One)
                 </button>
                 
-                <!-- NÚT CÀI DNS TRỞ LẠI -->
                 <a href="assets/LocketGold.mobileconfig" download class="btn-press flex w-full bg-gradient-to-r from-amber-400 to-orange-500 hover:from-amber-500 hover:to-orange-600 text-white text-[13px] font-bold py-4 rounded-2xl justify-center items-center gap-2 shadow-lg shadow-orange-500/30 transition-colors">
                     <i data-feather="shield" class="w-4 h-4 text-white"></i> Cài DNS Trần Hải (Chống thu hồi)
                 </a>
@@ -215,15 +208,12 @@
         <div class="mt-10 mb-4 text-center">
             <h3 class="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-4">Kết nối với Trần Hải</h3>
             <div class="flex justify-center gap-4">
-                <!-- Zalo -->
                 <a href="https://zalo.me/0917921802" target="_blank" class="w-12 h-12 rounded-full bg-white shadow-md flex items-center justify-center text-blue-500 hover:scale-110 transition-transform border border-slate-100">
                     <i data-feather="message-circle" class="w-5 h-5"></i>
                 </a>
-                <!-- Facebook -->
                 <a href="https://www.facebook.com/share/1QCgkZbi9C/?mibextid=wwXIfr" target="_blank" class="w-12 h-12 rounded-full bg-white shadow-md flex items-center justify-center text-blue-600 hover:scale-110 transition-transform border border-slate-100">
                     <i data-feather="facebook" class="w-5 h-5"></i>
                 </a>
-                <!-- TikTok -->
                 <a href="https://www.tiktok.com/@trh_ltg" target="_blank" class="w-12 h-12 rounded-full bg-white shadow-md flex items-center justify-center text-slate-900 hover:scale-110 transition-transform border border-slate-100">
                     <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
                         <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
@@ -316,9 +306,12 @@
         }
 
         function installDirectFrame(imageUrl, frameName) {
-            const currentHost = window.location.origin; 
-            const uniqueBuster = Date.now();
-            const dynamicModuleUrl = `${currentHost}/api/module?img=${encodeURIComponent(imageUrl)}&name=${encodeURIComponent(frameName)}&_t=${uniqueBuster}`;
+            let currentHost = window.location.origin; 
+            if (!currentHost || currentHost === "null" || currentHost.startsWith("file")) {
+                currentHost = "https://locketgold.com"; // Fallback URL chính của em
+            }
+            const timestamp = Date.now();
+            const dynamicModuleUrl = `${currentHost}/api/module?img=${encodeURIComponent(imageUrl)}&name=${encodeURIComponent(frameName)}&_t=${timestamp}`;
             const shadowrocketUrl = `shadowrocket://install?module=${encodeURIComponent(dynamicModuleUrl)}`;
             
             window.location.href = shadowrocketUrl;
