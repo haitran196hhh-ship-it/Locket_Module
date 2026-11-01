@@ -243,12 +243,17 @@
         function installDirectFrame(imageUrl, frameName) {
             const currentHost = window.location.origin; 
             
-            // Trỏ thẳng đến file api/module.js trên Vercel của bạn
-            const dynamicModuleUrl = `${currentHost}/api/module?img=${encodeURIComponent(imageUrl)}&name=${encodeURIComponent(frameName)}`;
+            // THÊM: Tạo một mốc thời gian ngẫu nhiên để đánh lừa Shadowrocket và Safari
+            // Giúp chúng hiểu đây là một đường link hoàn toàn mới, bắt buộc phải tải lại file.
+            const uniqueBuster = Date.now();
+            
+            // Trỏ thẳng đến file api/module.js trên Vercel của bạn kèm tham số chống cache
+            const dynamicModuleUrl = `${currentHost}/api/module?img=${encodeURIComponent(imageUrl)}&name=${encodeURIComponent(frameName)}&_t=${uniqueBuster}`;
             
             // Dùng scheme install module chuẩn
             const shadowrocketUrl = `shadowrocket://install?module=${encodeURIComponent(dynamicModuleUrl)}`;
 
+            // Tự động chuyển hướng và mở Shadowrocket
             window.location.href = shadowrocketUrl;
         }
     </script>
