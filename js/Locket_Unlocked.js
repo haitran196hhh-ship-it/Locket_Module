@@ -249,14 +249,15 @@ if (ua.includes("Locket")) {
     var rawArg = (typeof $argument !== "undefined" && $argument !== "") ? $argument : "";
     var customFrameUrl = "https://i.ibb.co/1Yt1Dzzy/Shin-chan-1.png"; 
     
+    // Tối ưu hóa việc nhận diện đường link ảnh để hỗ trợ cả ImgBB và GitHub
     if (rawArg.includes("frame=")) {
         customFrameUrl = decodeURIComponent(rawArg.split("frame=")[1].split("&")[0]);
     } else if (rawArg.startsWith("http")) {
-        customFrameUrl = rawArg.replace(/"/g, '').trim();
+        // Chỉ xóa dấu ngoặc kép ở hai đầu (nếu có) do Shadowrocket tự thêm, không được dùng replace(/[^...]/) làm hỏng link GitHub
+        customFrameUrl = rawArg.replace(/^"|"$/g, '').trim();
     }
 
     var dynamicUid = "frame_" + Date.now();
-
     Object.assign(obj.entries, {
         widget_frame_event_max_images: "10",
         android_widget_frame_event_enabled: "true",
