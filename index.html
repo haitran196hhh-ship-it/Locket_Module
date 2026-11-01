@@ -20,10 +20,10 @@
         
         /* Hiệu ứng khung Kính mờ (Glassmorphism) */
         .glass-card {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
             box-shadow: 0 10px 40px -10px rgba(0,0,0,0.08);
         }
 
@@ -66,11 +66,11 @@
             <h1 class="text-3xl font-extrabold tracking-tight text-slate-900 mb-1">
                 Locket <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-violet-600">Premium</span>
             </h1>
-            <p class="text-[13px] text-slate-500 font-medium">Phiên bản Mod độc quyền & Custom Widget bởi Trần Hải</p>
+            <p class="text-[13px] text-slate-500 font-medium">Bản Mod All-in-One & Custom Widget bởi Trần Hải</p>
         </div>
 
         <!-- MỤC MỚI: TỰ TẢI KHUNG ẢNH TỪ MÁY / ALBUM & CHỈNH SỬA -->
-        <div class="glass-card rounded-[32px] p-5 mb-5 relative z-10 border-2 border-blue-100">
+        <div class="glass-card rounded-[32px] p-5 mb-5 relative z-10 border-2 border-blue-200">
             <div class="flex items-center justify-between mb-4">
                 <h2 class="text-[13px] font-extrabold flex items-center text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-indigo-700 uppercase tracking-wider">
                     <i data-feather="image" class="w-4 h-4 mr-2 text-blue-600"></i> Tự tạo khung cá nhân
@@ -86,13 +86,10 @@
                     </div>
                     <canvas id="frameCanvas" width="640" height="640" class="w-full h-full object-contain relative z-10 pointer-events-none drop-shadow-md"></canvas>
                 </div>
-                <div class="mt-4 px-3 py-1 bg-slate-100/80 rounded-full border border-slate-200 text-[11px] text-slate-500 font-medium flex items-center gap-1.5">
-                    <i data-feather="maximize" class="w-3 h-3"></i> Xem trước hiển thị Widget iOS
-                </div>
             </div>
 
             <!-- Thanh trượt chỉnh kích thước -->
-            <div id="editorControls" class="hidden mb-4 bg-white/60 p-3.5 rounded-2xl border border-slate-200/60 shadow-sm backdrop-blur-md">
+            <div id="editorControls" class="hidden mb-4 bg-white/70 p-3.5 rounded-2xl border border-slate-200/60 shadow-sm backdrop-blur-md">
                 <label class="text-[11px] font-bold text-slate-600 flex justify-between mb-2 uppercase tracking-wide">
                     <span>Căn chỉnh viền</span>
                     <span id="scaleValue" class="text-blue-600">100%</span>
@@ -104,7 +101,7 @@
             <div class="space-y-3">
                 <input type="file" id="fileInput" accept="image/png, image/jpeg, image/webp" class="hidden" onchange="handleImageUpload(event)">
                 
-                <button onclick="document.getElementById('fileInput').click()" class="btn-press w-full bg-slate-100/80 hover:bg-slate-200 text-slate-700 text-[13px] font-bold py-3.5 rounded-2xl flex justify-center items-center gap-2 border border-slate-300/50 shadow-sm transition-colors">
+                <button onclick="document.getElementById('fileInput').click()" class="btn-press w-full bg-white hover:bg-slate-50 text-slate-700 text-[13px] font-bold py-3.5 rounded-2xl flex justify-center items-center gap-2 border border-slate-300/50 shadow-sm transition-colors">
                     <i data-feather="upload-cloud" class="w-4 h-4 text-blue-600"></i> Chọn ảnh từ Thư viện
                 </button>
 
@@ -122,13 +119,39 @@
             </div>
         </div>
 
+        <!-- MỤC MỚI: KHUNG ĐỘC LẠ HOT TREND -->
+        <div class="glass-card rounded-[32px] p-5 mb-5 border border-slate-200/60">
+            <h2 class="text-[13px] font-extrabold mb-4 flex items-center text-slate-800 uppercase tracking-wider">
+                <i data-feather="star" class="w-4 h-4 mr-2 text-rose-500"></i> Khung Độc Lạ & Hot Trend
+            </h2>
+            <div class="grid grid-cols-2 gap-3">
+                <!-- Anh thay các file png này lên thư mục assets/ của GitHub nhé -->
+                <button onclick="installDirectFrame('https://raw.githubusercontent.com/haitran196hhh-ship-it/Locket_Module/main/assets/frame_polaroid_640.png', 'Polaroid')" class="btn-press bg-white hover:bg-rose-50 border border-slate-200/80 rounded-2xl p-3 flex flex-col items-center shadow-sm transition-colors">
+                    <div class="w-12 h-12 bg-slate-50 rounded-xl mb-2 flex items-center justify-center border border-slate-100"><i data-feather="camera" class="w-6 h-6 text-slate-400"></i></div>
+                    <span class="text-xs font-bold text-slate-600">Khung Polaroid</span>
+                </button>
+                <button onclick="installDirectFrame('https://raw.githubusercontent.com/haitran196hhh-ship-it/Locket_Module/main/assets/frame_film_640.png', 'Cuộn Phim')" class="btn-press bg-white hover:bg-rose-50 border border-slate-200/80 rounded-2xl p-3 flex flex-col items-center shadow-sm transition-colors">
+                    <div class="w-12 h-12 bg-slate-50 rounded-xl mb-2 flex items-center justify-center border border-slate-100"><i data-feather="film" class="w-6 h-6 text-slate-400"></i></div>
+                    <span class="text-xs font-bold text-slate-600">Khung Cuộn Phim</span>
+                </button>
+                <button onclick="installDirectFrame('https://raw.githubusercontent.com/haitran196hhh-ship-it/Locket_Module/main/assets/frame_y2k_640.png', 'Y2K Style')" class="btn-press bg-white hover:bg-rose-50 border border-slate-200/80 rounded-2xl p-3 flex flex-col items-center shadow-sm transition-colors">
+                    <div class="w-12 h-12 bg-slate-50 rounded-xl mb-2 flex items-center justify-center border border-slate-100"><i data-feather="headphones" class="w-6 h-6 text-slate-400"></i></div>
+                    <span class="text-xs font-bold text-slate-600">Khung Y2K Style</span>
+                </button>
+                <button onclick="installDirectFrame('https://raw.githubusercontent.com/haitran196hhh-ship-it/Locket_Module/main/assets/frame_heart_640.png', 'Trái Tim')" class="btn-press bg-white hover:bg-rose-50 border border-slate-200/80 rounded-2xl p-3 flex flex-col items-center shadow-sm transition-colors">
+                    <div class="w-12 h-12 bg-slate-50 rounded-xl mb-2 flex items-center justify-center border border-slate-100"><i data-feather="heart" class="w-6 h-6 text-slate-400"></i></div>
+                    <span class="text-xs font-bold text-slate-600">Khung Trái Tim</span>
+                </button>
+            </div>
+            <p class="text-[10px] text-slate-400 text-center mt-3 font-medium">Bổ sung các file PNG thiết kế của bạn vào thư mục "assets" trên GitHub để các nút này hoạt động.</p>
+        </div>
+
         <!-- 1. CHỌN KHUNG CÓ SẴN (7 NGÀY) -->
         <div class="glass-card rounded-[32px] p-5 mb-5 border border-slate-200/60">
             <h2 class="text-[13px] font-extrabold mb-4 flex items-center text-slate-800 uppercase tracking-wider">
-                <i data-feather="grid" class="w-4 h-4 mr-2 text-indigo-500"></i> 1. Khung 7 Ngày (Bấm là cài)
+                <i data-feather="grid" class="w-4 h-4 mr-2 text-indigo-500"></i> Khung Theo 7 Ngày
             </h2>
             <div class="grid grid-cols-2 gap-3">
-                <!-- Các nút được bo tròn góc nhiều hơn, hiệu ứng hover mượt -->
                 <button onclick="installDirectFrame('https://raw.githubusercontent.com/haitran196hhh-ship-it/Locket_Module/main/assets/frame_mon_640.png', 'Thứ 2')" class="btn-press bg-white hover:bg-indigo-50 border border-slate-200/80 rounded-2xl p-3 flex flex-col items-center shadow-sm transition-colors">
                     <img src="https://raw.githubusercontent.com/haitran196hhh-ship-it/Locket_Module/main/assets/frame_mon_640.png" class="w-11 h-11 object-contain mb-1.5 drop-shadow-sm">
                     <span class="text-xs font-bold text-slate-600">Thứ 2</span>
@@ -174,14 +197,41 @@
         <!-- 2. CÀI ĐẶT CONFIG -->
         <div class="glass-card rounded-[32px] p-5 border border-slate-200/60">
             <h2 class="text-[13px] font-extrabold mb-4 flex items-center text-slate-800 uppercase tracking-wider">
-                <i data-feather="shield" class="w-4 h-4 mr-2 text-teal-500"></i> 2. Cài Module Gốc
+                <i data-feather="settings" class="w-4 h-4 mr-2 text-teal-500"></i> Cài Đặt Hệ Thống
             </h2>
-            <div class="space-y-2">
+            <div class="space-y-3">
                 <button onclick="installDirectFrame('https://i.ibb.co/1Yt1Dzzy/Shin-chan-1.png', 'Mặc Định')" class="btn-press flex w-full bg-slate-800 hover:bg-slate-900 text-white text-[13px] font-bold py-4 rounded-2xl justify-center items-center gap-2 shadow-lg shadow-slate-900/20 transition-colors">
-                    <i data-feather="download-cloud" class="w-4 h-4"></i> Cài Module Gốc (Chống thu hồi)
+                    <i data-feather="download-cloud" class="w-4 h-4"></i> Cài Module Gốc (All-in-One)
                 </button>
-                <p class="text-[11px] text-slate-500 text-center font-medium px-2">Bản Module Gốc đã tích hợp sẵn DNS chống thu hồi. Bật Shadowrocket là an toàn tuyệt đối.</p>
+                
+                <!-- NÚT CÀI DNS TRỞ LẠI -->
+                <a href="assets/LocketGold.mobileconfig" download class="btn-press flex w-full bg-gradient-to-r from-amber-400 to-orange-500 hover:from-amber-500 hover:to-orange-600 text-white text-[13px] font-bold py-4 rounded-2xl justify-center items-center gap-2 shadow-lg shadow-orange-500/30 transition-colors">
+                    <i data-feather="shield" class="w-4 h-4 text-white"></i> Cài DNS Trần Hải (Chống thu hồi)
+                </a>
             </div>
+        </div>
+
+        <!-- FOOTER: LIÊN HỆ & MẠNG XÃ HỘI -->
+        <div class="mt-10 mb-4 text-center">
+            <h3 class="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-4">Kết nối với Trần Hải</h3>
+            <div class="flex justify-center gap-4">
+                <!-- Zalo -->
+                <a href="https://zalo.me/0917921802" target="_blank" class="w-12 h-12 rounded-full bg-white shadow-md flex items-center justify-center text-blue-500 hover:scale-110 transition-transform border border-slate-100">
+                    <i data-feather="message-circle" class="w-5 h-5"></i>
+                </a>
+                <!-- Facebook -->
+                <a href="https://www.facebook.com/share/1QCgkZbi9C/?mibextid=wwXIfr" target="_blank" class="w-12 h-12 rounded-full bg-white shadow-md flex items-center justify-center text-blue-600 hover:scale-110 transition-transform border border-slate-100">
+                    <i data-feather="facebook" class="w-5 h-5"></i>
+                </a>
+                <!-- TikTok -->
+                <a href="https://www.tiktok.com/@trh_ltg" target="_blank" class="w-12 h-12 rounded-full bg-white shadow-md flex items-center justify-center text-slate-900 hover:scale-110 transition-transform border border-slate-100">
+                    <!-- Custom SVG for TikTok since Feather doesn't have it -->
+                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                        <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                    </svg>
+                </a>
+            </div>
+            <p class="text-[10px] text-slate-400 mt-4">© 2026 Designed by TranHai307</p>
         </div>
 
     </div>
