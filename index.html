@@ -24,14 +24,13 @@
 </head>
 <body class="bg-gray-50 min-h-screen text-gray-900 font-sans pb-14">
     
-    <!-- Đổi thành ảnh logo của bạn -->
-<div class="mx-auto mb-2.5 w-16 h-16 rounded-2xl shadow-md overflow-hidden bg-white flex items-center justify-center border border-gray-200">
-    <img src="https://i.ibb.co/Q7P3NNYF/Vi-sao-Kha-Banh-tro-thanh-hien-tuong-dinh-dam-tren-mang-xa-hoi-khabanh-1554192528-width660height597.jpg" alt="Logo" class="w-full h-full object-cover">
-</div>
+    <div class="max-w-md mx-auto px-4 py-6">
         
-        <!-- Header -->
+        <!-- Header & Logo -->
         <div class="text-center mb-6">
-            <div class="mx-auto mb-2.5 w-16 h-16 rounded-2xl shadow-md flex items-center justify-center bg-blue-600 text-white text-3xl">🚀</div>
+            <div class="mx-auto mb-2.5 w-16 h-16 rounded-2xl shadow-md overflow-hidden bg-white flex items-center justify-center border border-gray-200">
+                <img src="https://i.ibb.co/Q7P3NNYF/Vi-sao-Kha-Banh-tro-thanh-hien-tuong-dinh-dam-tren-mang-xa-hoi-khabanh-1554192528-width660height597.jpg" alt="Logo" class="w-full h-full object-cover">
+            </div>
             <h1 class="text-2xl font-extrabold text-gray-900">Locket <span class="text-blue-600">Premium</span></h1>
             <p class="text-xs text-gray-500 font-medium">Bản Mod & Tạo Khung Widget độc quyền bởi Trần Hải</p>
         </div>
@@ -156,14 +155,12 @@
     <script>
         feather.replace();
 
-        // THAY API KEY IMGBB CỦA BẠN VÀO ĐÂY (Lấy miễn phí tại https://api.imgbb.com/)
         const IMGBB_API_KEY = "cdd189918c005ab4f2d358b908e162ff"; 
 
         let uploadedImage = null;
         const canvas = document.getElementById('frameCanvas');
         const ctx = canvas.getContext('2d');
 
-        // Xử lý khi người dùng chọn ảnh từ Album / Tệp
         function handleImageUpload(event) {
             const file = event.target.files[0];
             if (!file) return;
@@ -182,7 +179,6 @@
             reader.readAsDataURL(file);
         }
 
-        // Vẽ và căn chỉnh ảnh lên khung chuẩn 640x640
         function redrawCanvas() {
             if (!uploadedImage) return;
             const scale = document.getElementById('scaleSlider').value / 100;
@@ -198,26 +194,18 @@
             ctx.drawImage(uploadedImage, x, y, w, h);
         }
 
-        // Xử lý nút Tạo Khung & Mở Shadowrocket
         async function processAndInstallCustomFrame() {
             const directUrl = document.getElementById('customUrlInput').value.trim();
             const statusText = document.getElementById('statusText');
             const btn = document.getElementById('installCustomBtn');
 
-            // Trường hợp 1: Người dùng dán sẵn link ảnh trực tiếp
             if (directUrl.startsWith('http')) {
                 installDirectFrame(directUrl, 'Tùy Chỉnh');
                 return;
             }
 
-            // Trường hợp 2: Người dùng chọn ảnh từ máy -> Tự động tải lên lấy link HTTPS cho Locket
             if (!uploadedImage) {
                 alert("Vui lòng chọn một khung ảnh từ máy hoặc dán link ảnh vào ô trống!");
-                return;
-            }
-
-            if (IMGBB_API_KEY === "c9cbdc08e848d4ef6a16c6cd5ce4ea51") {
-                alert("Chủ web (Trần Hải) chưa điền IMGBB_API_KEY vào code! Hãy dán link ảnh trực tiếp hoặc cập nhật API Key.");
                 return;
             }
 
@@ -226,7 +214,6 @@
                 statusText.classList.remove('hidden');
                 statusText.innerText = "⏳ Đang xử lý khung ảnh & tạo cấu hình riêng cho bạn...";
 
-                // Xuất ảnh từ Canvas (đã căn chỉnh 640x640) sang Base64
                 const base64Image = canvas.toDataURL('image/png').split(',')[1];
                 const formData = new FormData();
                 formData.append('image', base64Image);
@@ -252,35 +239,18 @@
             }
         }
 
-       // Hàm đẩy cấu hình sang Shadowrocket dưới dạng Mô-đun động qua Vercel API
-       function installDirectFrame(imageUrl, frameName) {
-    const timestamp = Date.now();
-    // Tạo file config .conf động có gắn kèm argument là link ảnh của ngày đó kèm mã chống cache v=${timestamp}
-    const configContent = `#!name=Locket Gold - Khung ${frameName}
-#!desc=Khung ${frameName} độc quyền bởi Trần Hải.
-#!author=Trần Hải
+        // Hàm gọi API Vercel để tạo link Mô-đun (.sgmodule) trực tiếp vào tab Mô-đun của Shadowrocket
+        function installDirectFrame(imageUrl, frameName) {
+            const currentHost = window.location.origin; 
+            
+            // Trỏ thẳng đến file api/module.js trên Vercel của bạn
+            const dynamicModuleUrl = `${currentHost}/api/module?img=${encodeURIComponent(imageUrl)}&name=${encodeURIComponent(frameName)}`;
+            
+            // Dùng scheme install module chuẩn
+            const shadowrocketUrl = `shadowrocket://install?module=${encodeURIComponent(dynamicModuleUrl)}`;
 
-[General]
-bypass-system = true
-skip-proxy = *.local, *.crashlytics.com
-tun-excluded-routes = 192.168.0.0/16, 10.0.0.0/8, 172.16.0.0/12
-
-[Header Rewrite]
-^https?://api.revenuecat.com/.+/(receipts$|subscribers/?(.*?)*$) header-del x-revenuecat-etag
-^https?://api.revenuecat.com/.+/(receipts$|subscribers/?(.*?)*$) header-del X-RevenueCat-ETag
-
-[Script]
-revenuecat = type=http-response, pattern=^https:\\/\\/api\\.revenuecat\\.com\\/.+\\/(receipts$|subscribers\\/[^/]+$), script-path=https://cdn.jsdelivr.net/gh/haitran196hhh-ship-it/Locket_Module@main/js/Locket_DuyVinh09.js, requires-body=true, max-size=-1, timeout=60
-deleteHeader = type=http-request, pattern=^https:\\/\\/api\\.revenuecat\\.com\\/.+\\/(receipts|subscribers), script-path=https://cdn.jsdelivr.net/gh/haitran196hhh-ship-it/Locket_Module@main/js/deleteHeader.js, timeout=60
-locket_rc = type=http-response, pattern=^https:\\/\\/firebaseremoteconfig\\.googleapis\\.com\\/v1\\/projects\\/locket-4252a\\/.+, script-path=https://cdn.jsdelivr.net/gh/haitran196hhh-ship-it/Locket_Module@main/js/Locket_Unlocked.js?v=${timestamp}, argument=frame=${encodeURIComponent(imageUrl)}, requires-body=true, max-size=-1, timeout=60
-
-[MITM]
-hostname = %APPEND% api.revenuecat.com, firebaseremoteconfig.googleapis.com
-`;
-
-    const encodedConfig = encodeURIComponent(configContent);
-    window.location.href = `shadowrocket://config/add/text=${encodedConfig}`;
-}
+            window.location.href = shadowrocketUrl;
+        }
     </script>
 </body>
 </html>
