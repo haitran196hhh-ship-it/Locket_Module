@@ -1,16 +1,16 @@
 #!name=Locket Gold & Camera Roll Unlocked
 #!desc=Mở khoá Locket Gold, Tải ảnh/video từ Camera Roll, Video 60s, Widget ổn định không lỗi trắng, Captions Tin Nóng.
-#!author=duongduchoan
+#!author=haitran196hhh
 
 [Script]
 # 1. Kích hoạt Locket Gold (RevenueCat)
-revenuecat = type=http-response, pattern=^https:\/\/api\.revenuecat\.com\/.+\/(receipts$|subscribers\/[^/]+$), script-path=https://raw.githubusercontent.com/duongduchoan/Locket_Module/main/js/Locket_DuyVinh09.js, requires-body=true, max-size=-1, timeout=60
+revenuecat = type=http-response, pattern=^https:\/\/api\.revenuecat\.com\/.+\/(receipts$|subscribers\/[^/]+$), script-path=https://raw.githubusercontent.com/haitran196hhh-ship-it/Locket_Module/refs/heads/main/js/Locket_DuyVinh09.js, requires-body=true, max-size=-1, timeout=60
 
 # 2. Xóa header ETag tránh bị lưu cache gói cũ
-deleteHeader = type=http-request, pattern=^https:\/\/api\.revenuecat\.com\/.+\/(receipts|subscribers), script-path=https://raw.githubusercontent.com/duongduchoan/Locket_Module/main/js/deleteHeader.js, timeout=60
+deleteHeader = type=http-request, pattern=^https:\/\/api\.revenuecat\.com\/.+\/(receipts|subscribers), script-path=https://raw.githubusercontent.com/haitran196hhh-ship-it/Locket_Module/refs/heads/main/js/deleteHeader.js, timeout=60
 
 # 3. Kích hoạt tính năng tải ảnh/video từ album, quay video 60s, huy hiệu Gold (Firebase Remote Config)
-locket_rc = type=http-response, pattern=^https:\/\/firebaseremoteconfig\.googleapis\.com\/v1\/projects\/locket-4252a\/.+, script-path=https://raw.githubusercontent.com/duongduchoan/Locket_Module/main/js/Locket_Unlocked.js, requires-body=true, max-size=-1, timeout=60
+locket_rc = type=http-response, pattern=^https:\/\/firebaseremoteconfig\.googleapis\.com\/v1\/projects\/locket-4252a\/.+, script-path=https://raw.githubusercontent.com/haitran196hhh-ship-it/Locket_Module/refs/heads/main/js/Locket_Unlocked.js, requires-body=true, max-size=-1, timeout=60
 
 [MITM]
 hostname = %APPEND% api.revenuecat.com, firebaseremoteconfig.googleapis.com
