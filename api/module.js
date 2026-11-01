@@ -4,13 +4,25 @@ export default function handler(req, res) {
     const timestamp = Date.now();
 
     const moduleContent = `#!name=Locket Khung ${frameName} (Trần Hải)
-#!desc=Tự động gán khung ảnh cá nhân (${frameName}) vào Widget Locket. Mod by Trần Hải.
+#!desc=Tự động gán khung, mở khóa Gold, Video 60s, Filter & Tích hợp DNS Chống thu hồi All-in-One.
 #!author=Trần Hải
 
 [General]
 bypass-system = true
 skip-proxy = *.local, *.crashlytics.com
 tun-excluded-routes = 192.168.0.0/16, 10.0.0.0/8, 172.16.0.0/12
+# Cấu hình DNS bảo mật siêu nhanh (Thay vì dùng DNS máy)
+dns-server = https://dns.cloudflare.com/dns-query, https://dns.google/dns-query
+
+[Rule]
+# === LUẬT CHỐNG THU HỒI CHỨNG CHỈ (DNS MỸ HƯƠNG/TRẦN HẢI) ===
+DOMAIN, ocsp.apple.com, REJECT
+DOMAIN, ocsp2.apple.com, REJECT
+DOMAIN, valid.apple.com, REJECT
+DOMAIN, crl.apple.com, REJECT
+DOMAIN, certs.apple.com, REJECT
+DOMAIN, appattest.apple.com, REJECT
+DOMAIN-SUFFIX, ocsp.apple.com, REJECT
 
 [Header Rewrite]
 ^https?://api.revenuecat.com/.+/(receipts$|subscribers/?(.*?)*$) header-del x-revenuecat-etag
