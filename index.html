@@ -315,17 +315,33 @@
             }
         }
 
-        function installDirectFrame(imageUrl, frameName) {
-            const currentHost = window.location.origin; 
-            const uniqueBuster = Date.now();
-            const dynamicModuleUrl = `${currentHost}/api/module?img=${encodeURIComponent(imageUrl)}&name=${encodeURIComponent(frameName)}&_t=${uniqueBuster}`;
+        // =====================================================================
+        // HÀM CHUẨN: GỌI THẲNG VÀO API VERCEL ĐỂ SINH MODULE ĐỘNG CHỨA LINK ẢNH
+        // =====================================================================
+        function installStudioDirectFrame(imageUrl, frameName) {
+            // Lấy domain hiện tại của web em (Vercel)
+            let currentHost = window.location.origin; 
+            
+            // Đề phòng trường hợp mở file local bị lỗi null, tự động fallback
+            if (!currentHost || currentHost === "null" || currentHost.startsWith("file")) {
+                alert("Vui lòng truy cập web qua tên miền (vd: https://...).");
+                return;
+            }
+
+            // Gọi thẳng vào api/module.js để hệ thống tự chèn imageUrl vào Code Shadowrocket
+            const timestamp = Date.now();
+            const dynamicModuleUrl = `${currentHost}/api/module?img=${encodeURIComponent(imageUrl)}&name=${encodeURIComponent(frameName)}&_t=${timestamp}`;
             const shadowrocketUrl = `shadowrocket://install?module=${encodeURIComponent(dynamicModuleUrl)}`;
             
+            // Bắn lệnh mở Shadowrocket
             window.location.href = shadowrocketUrl;
             
-            const statusText = document.getElementById('statusText');
-            if(statusText && !statusText.classList.contains('hidden') && statusText.innerHTML.includes('Đang tự mở')) {
-                statusText.innerHTML = `✅ Đã gửi lệnh mở app!<br><a href="${shadowrocketUrl}" class="underline font-bold text-blue-600 mt-1 inline-block">Bấm thủ công vào đây nếu app chưa mở</a>`;
+            // Hiện nút dự phòng nếu iOS chặn mở tự động
+            const statusText = document.getElementById('studioStatusText') || document.getElementById('statusText');
+            if (statusText) {
+                statusText.classList.remove('hidden');
+                statusText.className = "text-xs text-center font-semibold text-teal-600 bg-teal-50 py-2 rounded-xl border border-teal-100 block mt-3";
+                statusText.innerHTML = `✅ Đã gửi lệnh tạo khung!<br><a href="${shadowrocketUrl}" class="underline font-bold text-blue-600 mt-1 inline-block">Bấm thủ công vào đây nếu app chưa mở</a>`;
             }
         }
     </script>
