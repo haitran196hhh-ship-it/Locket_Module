@@ -50,12 +50,12 @@ if (ua.includes("Locket")) {
             tag: "LOCKET GOLD",
             tag_gradient: true,
             tag_style: "gold_gradient",
-            title: "Lên Locket Gold rồi đó 😎",
+            title: "Lên Locket Gold rồi đó BẠN 😎",
             feature_set: [
                 {
-                    title: "Hẹ Hẹ Hẹ ✨",
-                    body: " TRẦN HẢI NÈ MẤY EM  💛",
-                    imageURL: "okkkkkk"
+                    title: "CHÀO MẤY TÌNH IU  ✨",
+                    body: " TRẦN HẢI NHAA  💛",
+                    imageURL: "https://i.ibb.co/0RGR62j1/1793524189318-213581069014239013-1206618570493123949-7650d70b05730554d8e4df37b1b379f1.jpg"
                 }
             ],
             primary_button_title: "Xong",
