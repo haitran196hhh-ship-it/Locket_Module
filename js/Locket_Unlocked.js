@@ -251,19 +251,29 @@ if (ua.includes("Locket")) {
     // ============================================================
     // 6. WIDGET, THÔNG BÁO & GIAO DIỆN (JOURNAL / PROFILE)
     // ============================================================
-    // Code giúp file JS tự động nhận link ảnh từ Web truyền sang
-    var customFrameUrl = (typeof $argument !== "undefined" && $argument !== "") ? $argument : "https://i.ibb.co/1Yt1Dzzy/Shin-chan-1.png";
+    // Nhận link ảnh từ argument (Hỗ trợ cả truyền trực tiếp hoặc dạng key=value)
+    var rawArg = (typeof $argument !== "undefined" && $argument !== "") ? $argument : "";
+    var customFrameUrl = "https://i.ibb.co/1Yt1Dzzy/Shin-chan-1.png";
+    
+    if (rawArg.includes("frame=")) {
+        customFrameUrl = decodeURIComponent(rawArg.split("frame=")[1].split("&")[0]);
+    } else if (rawArg.startsWith("http")) {
+        customFrameUrl = rawArg.replace(/"/g, '').trim();
+    }
+
+    // Tạo UID động dựa trên tên file ảnh để ép Locket xóa cache khung cũ (Shin-chan)
+    var dynamicUid = "frame_" + customFrameUrl.replace(/[^a-zA-Z0-9]/g, '').slice(-12);
 
     Object.assign(obj.entries, {
-        widget_frame_event_max_images: "5",
+        widget_frame_event_max_images: "10",
         android_widget_frame_event_enabled: "true",
         widget_badge_enabled: "true",
         widget_badge_v2: "true",
         widget_stale_state_enabled: "false",
         widget_last_sent_indicator: "false",
-        widget_sync_token_reload_mode: "clearTokenNever",
+        widget_sync_token_reload_mode: "clearTokenAlways", // Đổi từ Never sang Always để làm mới widget
         widget_frame_event: JSON.stringify({
-            uid: "custom_frame_v1",
+            uid: dynamicUid,
             url: customFrameUrl,
             use_local_time_zone: true,
             placement: "below",
