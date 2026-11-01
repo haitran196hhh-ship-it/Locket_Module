@@ -90,7 +90,7 @@ if (ua.includes("Locket")) {
         sentry_profiles_sample_rate: "0"
     });
 
-   // ============================================================
+  // ============================================================
     // 3. CAMERA, VIDEO, FILTERS & UPLOAD QUALITY
     // ============================================================
     Object.assign(obj.entries, {
@@ -107,21 +107,21 @@ if (ua.includes("Locket")) {
             telephoto: true,
             srgb: true,
             lanczos: true,
-            quality_mbps: 3.0, // Đã nâng cấp từ 0.6 lên 3.0 Mbps cho nét căng
-            qualityMbps: 3.0
+            quality_mbps: 5.0, // Nét căng khi quay trực tiếp
+            qualityMbps: 5.0
         }),
         camera_roll: JSON.stringify({
-            gold_max_duration: 60.0, // Nâng lên 60s
+            gold_max_duration: 60.0,
             goldMaxDuration: 60.0,
-            video_max_duration: 60.0, // Nâng lên 60s
+            video_max_duration: 60.0,
             videoMaxDuration: 60.0,
             max_duration: 60.0,
             maxDuration: 60.0,
-            trim_max_duration: 60.0, // Cho phép cắt video 60s
+            trim_max_duration: 60.0, // Mở giới hạn thanh trượt cắt video lên 60s
             trimMaxDuration: 60.0,
-            camera_roll_max_duration: 60.0, 
-            quality_mbps: 3.0, // Nâng chất lượng upload từ album
-            qualityMbps: 3.0,
+            camera_roll_max_duration: 60.0,
+            quality_mbps: 8.0, // Ép Locket giữ chất lượng gốc khi up video từ album
+            qualityMbps: 8.0,
             flash_button: true
         }),
         live_photos: JSON.stringify({
@@ -164,11 +164,11 @@ if (ua.includes("Locket")) {
         camera_microphone_enabled: "true",
         audio_session_deactivation_enabled: "true",
         zoom_enabled: "true",
-        upload_main: "false",
-        upload_main_image_quality: "1.0", // Nâng từ 0.6 lên 1.0 (Giữ chất lượng gốc)
-        upload_main_image_size: "2048",   // Nâng từ 1440 lên 2048px (Độ phân giải 2K)
-        upload_thumbnail_image_quality: "0.8",
-        upload_thumbnail_image_size: "1020"
+        upload_main: "true", // Bật TRUE để up file gốc không qua nén
+        upload_main_image_quality: "1.0", // 100% chất lượng
+        upload_main_image_size: "2048", // Phân giải 2K
+        upload_thumbnail_image_quality: "0.9",
+        upload_thumbnail_image_size: "1080"
     });
 
     // ============================================================
