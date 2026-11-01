@@ -38,7 +38,7 @@
             <div id="uploadStatus" class="hidden text-xs text-center font-bold text-purple-600 mt-3 animate-pulse">Đang xử lý ảnh & tạo cấu hình...</div>
         </div>
 
-        <!-- 2. Kho khung có sẵn -->
+        <!-- 2. Kho khung có sẵn (7 Ngày) -->
         <div class="bg-white rounded-2xl p-5 border border-gray-200 shadow-sm mb-5">
             <h2 class="text-sm font-bold mb-3 flex items-center text-blue-600 uppercase">
                 <i data-feather="grid" class="w-4 h-4 mr-2"></i> 2. Chọn Khung Có Sẵn (7 Ngày)
@@ -73,29 +73,37 @@
                     <span class="text-xs font-bold">Khung Chủ Nhật</span>
                 </button>
             </div>
-            <p class="text-[10px] text-center text-gray-400 mt-3">*Bấm chọn khung, lưu File vào Shadowrocket, bật VPN và mở Locket!</p>
+            <p class="text-[10px] text-center text-gray-400 mt-3">*Bấm chọn khung, lưu File vào Shadowrocket để dùng!</p>
         </div>
 
-        <!-- 3. Cài bản gốc & DNS -->
+        <!-- 3. Cài đặt Config Gốc, Module & DNS -->
         <div class="bg-white rounded-2xl p-5 border border-gray-200 shadow-sm">
             <h2 class="text-sm font-bold mb-3 flex items-center text-gray-800 uppercase">
-                <i data-feather="settings" class="w-4 h-4 mr-2"></i> 3. Cài Bản Thường & DNS
+                <i data-feather="settings" class="w-4 h-4 mr-2"></i> 3. Cài Config, Module & DNS
             </h2>
             <div class="space-y-3">
-                <a href="shadowrocket://config/add/https://raw.githubusercontent.com/haitran196hhh-ship-it/Locket_Module/main/Locket.conf" class="btn-hover flex w-full bg-gray-900 text-white text-sm font-bold py-3 rounded-xl justify-center items-center gap-2">
-                    Cài Config Gốc (Không Khung)
+                <!-- Nút cài Module trực tiếp -->
+                <a href="shadowrocket://install?module=https%3A%2F%2Fraw.githubusercontent.com%2Fhaitran196hhh-ship-it%2FLocket_Module%2Fmain%2Fmodules%2FLocket_Gold.sgmodule" class="btn-hover flex w-full bg-blue-600 text-white text-sm font-bold py-3 rounded-xl justify-center items-center gap-2 shadow-sm">
+                    <i data-feather="plus-circle" class="w-4 h-4"></i> Cài Module Gốc (.sgmodule)
                 </a>
-                <a href="assets/LocketGold.mobileconfig" download class="btn-hover flex w-full bg-amber-400 text-amber-950 text-sm font-bold py-3 rounded-xl justify-center items-center gap-2">
+
+                <!-- Nút cài Config trực tiếp -->
+                <a href="shadowrocket://config/add/https://raw.githubusercontent.com/haitran196hhh-ship-it/Locket_Module/main/Locket.conf" class="btn-hover flex w-full bg-gray-900 text-white text-sm font-bold py-3 rounded-xl justify-center items-center gap-2 shadow-sm">
+                    <i data-feather="file-text" class="w-4 h-4"></i> Cài Config Gốc (.conf)
+                </a>
+
+                <!-- Nút cài DNS Profile -->
+                <a href="assets/LocketGold.mobileconfig" download class="btn-hover flex w-full bg-amber-400 text-amber-950 text-sm font-bold py-3 rounded-xl justify-center items-center gap-2 shadow-sm">
                     <i data-feather="shield" class="w-4 h-4"></i> Cài DNS Trần Hải (Chống thu hồi)
                 </a>
             </div>
         </div>
+
     </div>
 
     <script>
         feather.replace();
 
-        // Hàm tạo file Config .conf chứa link ảnh
         function generateConfigContent(imageUrl, frameName) {
             return `#!name=Locket Gold Khung ${frameName}
 #!desc=Cấu hình Locket Gold tích hợp khung ảnh ${frameName}. Mod by Trần Hải.
@@ -113,7 +121,7 @@ tun-excluded-routes = 192.168.0.0/16, 10.0.0.0/8, 172.16.0.0/12
 revenuecat = type=http-response, pattern=^https:\\/\\/api\\.revenuecat\\.com\\/.+\\/(receipts$|subscribers\\/[^/]+$), script-path=https://raw.githubusercontent.com/haitran196hhh-ship-it/Locket_Module/main/js/Locket_DuyVinh09.js, requires-body=true, max-size=-1, timeout=60
 deleteHeader = type=http-request, pattern=^https:\\/\\/api\\.revenuecat\\.com\\/.+\\/(receipts|subscribers), script-path=https://raw.githubusercontent.com/haitran196hhh-ship-it/Locket_Module/main/js/deleteHeader.js, timeout=60
 
-# NAP LINK ANH VAO BIEN ARGUMENT CHO JS
+# NẠP LINK ẢNH VÀO BIẾN ARGUMENT CHO JS
 locket_rc = type=http-response, pattern=^https:\\/\\/firebaseremoteconfig\\.googleapis\\.com\\/v1\\/projects\\/locket-4252a\\/.+, script-path=https://raw.githubusercontent.com/haitran196hhh-ship-it/Locket_Module/main/js/Locket_Unlocked.js, argument="${imageUrl}", requires-body=true, max-size=-1, timeout=60
 
 [MITM]
@@ -131,7 +139,7 @@ hostname = %APPEND% api.revenuecat.com, firebaseremoteconfig.googleapis.com
             a.click();
             document.body.removeChild(a);
             URL.revokeObjectURL(blobUrl);
-            setTimeout(() => alert("File đã tải về! Hãy mở file lên và chọn 'Mở bằng Shadowrocket' -> Bật VPN -> Mở Locket nhé!"), 500);
+            setTimeout(() => alert("File cấu hình đã tạo thành công! Hãy mở file lên và chọn 'Mở bằng Shadowrocket' nhé!"), 500);
         }
 
         function installFrame(url, name) {
@@ -139,7 +147,6 @@ hostname = %APPEND% api.revenuecat.com, firebaseremoteconfig.googleapis.com
             downloadConfig(config, "Locket_" + name.replace(/\s+/g, '_'));
         }
 
-        // Upload ảnh lên ImgBB API
         document.getElementById('customFrameInput').addEventListener('change', function(e) {
             const file = e.target.files[0];
             if (!file) return;
