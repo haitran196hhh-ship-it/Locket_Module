@@ -261,12 +261,12 @@ if (ua.includes("Locket")) {
         widget_stale_state_enabled: "false",
         widget_last_sent_indicator: "false",
         widget_sync_token_reload_mode: "clearTokenNever",
+                // Code giúp file JS tự động nhận link ảnh từ Web truyền sang
+        var customFrameUrl = (typeof $argument !== "undefined" && $argument !== "") ? $argument : "https://i.ibb.co/1Yt1Dzzy/Shin-chan-1.png";
+
         widget_frame_event: JSON.stringify({
-            uid: "midautumn_2026",
-            //url: "https://i.ibb.co/S74Rm5mm/khungsin.png",
-            url: "https://i.ibb.co/1Yt1Dzzy/Shin-chan-1.png",
-            // url: "https://i.ibb.co/RTm5P1n9/kitty-1.png",
-            // url: "https://i.ibb.co/JjLZ3cvD/khung-ins.png",
+            uid: "custom_frame_v1",
+            url: customFrameUrl,
             use_local_time_zone: true,
             placement: "below",
             start_at: "2020-01-01T00:00:00",
