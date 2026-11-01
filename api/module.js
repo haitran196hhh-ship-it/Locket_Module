@@ -1,7 +1,6 @@
 export default function handler(req, res) {
     const imageUrl = req.query.img || "https://i.ibb.co/1Yt1Dzzy/Shin-chan-1.png";
-    const frameName = req.query.name || "Mặc Định";
-    // Tham số time để ép Shadowrocket luôn tải file Locket_Unlocked.js mới nhất, không dùng cache
+    const frameName = req.query.name || "Tùy Chỉnh";
     const timestamp = Date.now();
 
     const moduleContent = `#!name=Locket Khung ${frameName} (Trần Hải)
@@ -15,7 +14,6 @@ tun-excluded-routes = 192.168.0.0/16, 10.0.0.0/8, 172.16.0.0/12
 dns-server = https://dns.cloudflare.com/dns-query, https://dns.google/dns-query
 
 [Rule]
-# === LUẬT CHỐNG THU HỒI CHỨNG CHỈ APPLE ===
 DOMAIN, ocsp.apple.com, REJECT
 DOMAIN, ocsp2.apple.com, REJECT
 DOMAIN, valid.apple.com, REJECT
@@ -33,8 +31,7 @@ revenuecat = type=http-response, pattern=^https:\\/\\/api\\.revenuecat\\.com\\/.
 
 deleteHeader = type=http-request, pattern=^https:\\/\\/api\\.revenuecat\\.com\\/.+\\/(receipts|subscribers), script-path=https://raw.githubusercontent.com/haitran196hhh-ship-it/Locket_Module/main/js/deleteHeader.js?v=${timestamp}, timeout=60
 
-# Truyền link khung vào argument và ép tải lại script bằng v=${timestamp}
-locket_rc = type=http-response, pattern=^https:\\/\\/firebaseremoteconfig\\.googleapis\\.com\\/v1\\/projects\\/locket-4252a\\/.+, script-path=https://raw.githubusercontent.com/haitran196hhh-ship-it/Locket_Module/main/js/Locket_Unlocked.js?v=${timestamp}, argument=frame=${encodeURIComponent(imageUrl)}, requires-body=true, max-size=-1, timeout=60
+locket_rc = type=http-response, pattern=^https:\\/\\/firebaseremoteconfig\\.googleapis\\.com\\/v1\\/projects\\/locket-4252a\\/.+, script-path=https://raw.githubusercontent.com/haitran196hhh-ship-it/Locket_Module/main/js/Locket_Unlocked.js?v=${timestamp}, argument=frame=${imageUrl}, requires-body=true, max-size=-1, timeout=60
 
 [MITM]
 hostname = %APPEND% api.revenuecat.com, firebaseremoteconfig.googleapis.com
