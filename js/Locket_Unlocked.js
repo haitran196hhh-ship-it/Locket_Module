@@ -252,16 +252,20 @@ if (ua.includes("Locket")) {
     // 6. WIDGET, THÔNG BÁO & GIAO DIỆN (JOURNAL / PROFILE)
     // ============================================================
     // Nhận link ảnh từ argument (Hỗ trợ cả truyền trực tiếp hoặc dạng key=value)
+    // ============================================================
+    // 6. WIDGET, THÔNG BÁO & GIAO DIỆN (JOURNAL / PROFILE)
+    // ============================================================
     var rawArg = (typeof $argument !== "undefined" && $argument !== "") ? $argument : "";
-    var customFrameUrl = "https://i.ibb.co/1Yt1Dzzy/Shin-chan-1.png";
-    
+    var customFrameUrl = "https://i.ibb.co/1Yt1Dzzy/Shin-chan-1.png"; // Link mặc định dự phòng
+
+    // Tự động phân tích các kiểu truyền argument khác nhau từ Shadowrocket
     if (rawArg.includes("frame=")) {
         customFrameUrl = decodeURIComponent(rawArg.split("frame=")[1].split("&")[0]);
     } else if (rawArg.startsWith("http")) {
         customFrameUrl = rawArg.replace(/"/g, '').trim();
     }
 
-    // Tạo UID động dựa trên tên file ảnh để ép Locket xóa cache khung cũ (Shin-chan)
+    // Tạo UID động theo link ảnh để ép Locket xóa cache cũ, hiện ngay khung mới
     var dynamicUid = "frame_" + customFrameUrl.replace(/[^a-zA-Z0-9]/g, '').slice(-12);
 
     Object.assign(obj.entries, {
