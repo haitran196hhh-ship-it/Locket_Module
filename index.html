@@ -3,82 +3,192 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Locket Premium - Trần Hải</title>
+    <title>Unlock Locket Gold Premium - Trần Hải</title>
+    <meta name="description" content="Hướng dẫn Unlock Locket Gold trên iPhone bằng ShadowRocket.">
     <meta name="theme-color" content="#2563eb">
+    <link rel="icon" type="image/png" href="./assets/img/shadowrocket.webp"/>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://unpkg.com/feather-icons"></script>
     <style>
+        .copy-btn:hover, .frame-btn:hover { transform: scale(1.02); }
+        .copy-btn:active, .frame-btn:active { transform: scale(0.98); }
+        :root {
+            --yellow: #fcd34d; 
+        }
         body { -webkit-tap-highlight-color: transparent; }
-        .btn-hover:active { transform: scale(0.98); }
     </style>
 </head>
-<body class="bg-gray-50 min-h-screen text-gray-900 font-sans pb-10">
+<body class="bg-gradient-to-br from-blue-50 via-white to-indigo-50 min-h-screen text-gray-900 font-sans selection:bg-blue-200">
+
+    <!-- Decorative Background -->
+    <div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+        <div class="absolute -top-24 -left-24 w-80 h-80 rounded-full bg-gradient-to-tr from-blue-200 to-sky-200 blur-3xl opacity-40"></div>
+        <div class="absolute top-1/2 -right-24 w-96 h-96 rounded-full bg-gradient-to-tr from-purple-200 to-indigo-200 blur-3xl opacity-30"></div>
+        <div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(circle at 1px 1px, black 1px, transparent 0); background-size: 24px 24px;"></div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed top-10 left-1/2 -translate-x-1/2 z-50 pointer-events-none">
+        <div id="toastContent" class="opacity-0 -translate-y-4 transition-all duration-400 ease-out">
+            <div class="bg-gray-900/95 backdrop-blur text-white rounded-2xl px-5 py-3 shadow-2xl flex items-center gap-2.5 border border-gray-700">
+                <i data-feather="check-circle" class="w-4 h-4 text-green-400"></i>
+                <span id="toastMessage" class="text-sm font-semibold tracking-wide">Thành công!</span>
+            </div>
+        </div>
+    </div>
     
-    <div class="max-w-md mx-auto px-4 py-8">
+    <div class="relative z-10 max-w-md mx-auto px-5 py-8">
         
         <!-- Header -->
-        <div class="text-center mb-6">
-            <div class="mx-auto mb-3 w-16 h-16 rounded-2xl shadow-md flex items-center justify-center bg-blue-500 text-white text-3xl">🚀</div>
-            <h1 class="text-2xl font-extrabold text-gray-900">Locket <span class="text-blue-600">Premium</span></h1>
-            <p class="text-sm text-gray-500 font-medium">Bản Mod độc quyền bởi Trần Hải</p>
-        </div>
-
-        <!-- 1. Tự tải ảnh khung lên (Tự động hóa hoàn toàn) -->
-        <div class="bg-white rounded-2xl p-5 border border-gray-200 shadow-sm mb-5">
-            <h2 class="text-sm font-bold mb-3 flex items-center text-purple-600 uppercase">
-                <i data-feather="upload-cloud" class="w-4 h-4 mr-2"></i> 1. Tự Tạo Khung Ảnh Riêng
-            </h2>
-            <p class="text-xs text-gray-500 mb-4">Chọn 1 ảnh (đuôi .png nền trong suốt) từ máy bạn. Hệ thống sẽ tự tạo cấu hình Locket cho riêng bạn!</p>
-            
-            <input type="file" id="customFrameInput" accept="image/png" class="hidden">
-            <button id="uploadBtn" onclick="document.getElementById('customFrameInput').click()" class="btn-hover w-full bg-purple-100 text-purple-700 hover:bg-purple-200 text-sm font-bold py-3 rounded-xl flex items-center justify-center gap-2 transition-all">
-                <i data-feather="image" class="w-4 h-4"></i> Chọn Ảnh Từ Điện Thoại
-            </button>
-            
-            <div id="uploadStatus" class="hidden text-xs text-center font-bold text-purple-600 mt-3 animate-pulse">Đang xử lý ảnh & tạo cấu hình...</div>
-        </div>
-
-        <!-- 2. Kho khung có sẵn -->
-        <div class="bg-white rounded-2xl p-5 border border-gray-200 shadow-sm mb-5">
-            <h2 class="text-sm font-bold mb-3 flex items-center text-blue-600 uppercase">
-                <i data-feather="grid" class="w-4 h-4 mr-2"></i> 2. Chọn Khung Có Sẵn
-            </h2>
-            <div class="grid grid-cols-2 gap-3">
-                <button onclick="installFrame('https://i.ibb.co/1Yt1Dzzy/Shin-chan-1.png', 'Shin-chan')" class="btn-hover bg-gray-50 border border-gray-200 rounded-xl p-3 flex flex-col items-center">
-                    <span class="text-3xl mb-1">🖍️</span>
-                    <span class="text-xs font-bold">Khung Shin-chan</span>
-                </button>
-                <button onclick="installFrame('https://i.ibb.co/V3QzPjK/tiktok-frame.png', 'TikTok')" class="btn-hover bg-gray-50 border border-gray-200 rounded-xl p-3 flex flex-col items-center">
-                    <span class="text-3xl mb-1">🎵</span>
-                    <span class="text-xs font-bold">Khung TikTok</span>
-                </button>
+        <div class="text-center mb-8" data-aos="fade-down">
+            <div class="mx-auto mb-4 w-16 h-16 rounded-3xl shadow-lg flex items-center justify-center bg-gradient-to-br from-blue-500 to-sky-400 ring-4 ring-blue-50">
+                <span class="text-3xl drop-shadow-md">🚀</span>
             </div>
+            <h1 class="text-3xl font-extrabold mb-1.5 tracking-tight text-gray-900">Locket <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-sky-500">Premium</span></h1>
+            <p class="text-sm text-gray-500 font-medium">Bản Mod cấu hình bởi <span class="font-bold text-blue-600">Trần Hải</span></p>
         </div>
 
-        <!-- 3. Cài bản gốc & DNS -->
-        <div class="bg-white rounded-2xl p-5 border border-gray-200 shadow-sm">
-            <h2 class="text-sm font-bold mb-3 flex items-center text-gray-800 uppercase">
-                <i data-feather="settings" class="w-4 h-4 mr-2"></i> 3. Cài Bản Thường & DNS
-            </h2>
-            <div class="space-y-3">
-                <a href="shadowrocket://config/add/https://raw.githubusercontent.com/haitran196hhh-ship-it/Locket_Module/main/Locket.conf" class="btn-hover flex w-full bg-gray-900 text-white text-sm font-bold py-3 rounded-xl justify-center items-center gap-2">
-                    Cài Config Gốc (Không Khung)
-                </a>
-                <a href="assets/LocketGold.mobileconfig" download class="btn-hover flex w-full bg-amber-400 text-amber-950 text-sm font-bold py-3 rounded-xl justify-center items-center gap-2">
-                    <i data-feather="shield" class="w-4 h-4"></i> Cài DNS Trần Hải (Chống thu hồi)
-                </a>
+        <div class="space-y-5">
+
+            <!-- Locket App Card -->
+            <div class="bg-white/80 backdrop-blur-md rounded-2xl p-4 border border-gray-100 shadow-sm flex items-center gap-3" data-aos="fade-up" data-aos-delay="50">
+                <div class="w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold bg-gradient-to-br from-yellow-400 to-amber-500 shadow-inner text-lg">LK</div>
+                <div class="flex-1">
+                    <div class="font-bold text-gray-900 text-sm flex items-center gap-1">Locket Gold <span class="text-xs">💛</span></div>
+                    <div class="text-[11px] text-gray-500 mt-0.5 leading-tight">Video 60s, Up ảnh Album, Thẻ Tin Nóng & Bộ nhãn dán Caption tùy chỉnh.</div>
+                </div>
             </div>
-        </div>
 
+            <!-- Notice -->
+            <div class="rounded-2xl p-3.5 border border-amber-200/80 bg-amber-50/80 flex items-start gap-3 shadow-sm" data-aos="fade-up" data-aos-delay="100">
+                <div class="mt-0.5 w-6 h-6 rounded-lg flex items-center justify-center shrink-0 bg-gradient-to-br from-amber-300 to-yellow-400 shadow-inner">
+                    <i data-feather="alert-triangle" class="w-3.5 h-3.5 text-amber-900"></i>
+                </div>
+                <div class="text-[13px] text-gray-800 space-y-1.5 leading-snug">
+                    <p class="font-bold text-amber-900">Lưu ý quan trọng:</p>
+                    <p>• Phải <span class="font-semibold">bật VPN ShadowRocket</span> mới dùng được Premium.</p>
+                    <p>• Hãy tắt VPN khi không dùng Locket để tiết kiệm pin.</p>
+                </div>
+            </div>
+
+            <!-- Section 1: Kho Khung Ảnh Nhanh -->
+            <div class="bg-white/90 backdrop-blur-xl rounded-3xl p-5 border border-gray-100 shadow-xl" data-aos="fade-up" data-aos-delay="150">
+                <h2 class="text-sm font-extrabold mb-3.5 flex items-center text-gray-900 uppercase tracking-wide">
+                    <i data-feather="grid" class="w-4 h-4 mr-2 text-purple-500"></i> Chọn Khung Nhanh
+                </h2>
+                <p class="text-xs text-gray-500 mb-4">Bấm vào khung bạn thích, hệ thống sẽ tự động tạo cấu hình cài thẳng vào máy.</p>
+                
+                <div class="grid grid-cols-2 gap-3">
+                    <!-- Nút Khung 1 -->
+                    <button onclick="installPresetFrame('https://i.ibb.co/1Yt1Dzzy/Shin-chan-1.png', 'Shin-chan')" class="frame-btn bg-gray-50 hover:bg-purple-50 border border-gray-200 hover:border-purple-300 rounded-2xl p-3.5 flex flex-col items-center gap-2 transition-all shadow-sm">
+                        <span class="text-3xl drop-shadow-sm">🖍️</span>
+                        <span class="text-[11px] font-bold text-gray-700">Khung Shin-chan</span>
+                    </button>
+
+                    <!-- Nút Khung 2 -->
+                    <button onclick="installPresetFrame('https://i.ibb.co/V3QzPjK/tiktok-frame.png', 'TikTok')" class="frame-btn bg-gray-50 hover:bg-pink-50 border border-gray-200 hover:border-pink-300 rounded-2xl p-3.5 flex flex-col items-center gap-2 transition-all shadow-sm">
+                        <span class="text-3xl drop-shadow-sm">🎵</span>
+                        <span class="text-[11px] font-bold text-gray-700">Khung TikTok</span>
+                    </button>
+
+                    <!-- Nút Khung 3 -->
+                    <button onclick="installPresetFrame('https://i.ibb.co/9GzB9x9/kitty-frame.png', 'Hello Kitty')" class="frame-btn bg-gray-50 hover:bg-rose-50 border border-gray-200 hover:border-rose-300 rounded-2xl p-3.5 flex flex-col items-center gap-2 transition-all shadow-sm">
+                        <span class="text-3xl drop-shadow-sm">🎀</span>
+                        <span class="text-[11px] font-bold text-gray-700">Khung Hello Kitty</span>
+                    </button>
+
+                    <!-- Nút Khung 4 -->
+                    <button onclick="installPresetFrame('https://i.ibb.co/5cQ4yM7/instargram-frame.png', 'Instagram')" class="frame-btn bg-gray-50 hover:bg-orange-50 border border-gray-200 hover:border-orange-300 rounded-2xl p-3.5 flex flex-col items-center gap-2 transition-all shadow-sm">
+                        <span class="text-3xl drop-shadow-sm">📸</span>
+                        <span class="text-[11px] font-bold text-gray-700">Khung Instagram</span>
+                    </button>
+                </div>
+                <div class="mt-4 text-[10px] text-center text-gray-400 font-medium">*(Sau khi tải file về, hãy bấm mở bằng Shadowrocket để áp dụng)*</div>
+            </div>
+
+            <!-- Section 2: Cài Đặt Bản Căn Bản -->
+            <div class="bg-white/90 backdrop-blur-xl rounded-3xl p-5 border border-gray-100 shadow-xl" data-aos="fade-up" data-aos-delay="200">
+                <h2 class="text-sm font-extrabold mb-4 flex items-center text-gray-900 uppercase tracking-wide">
+                    <i data-feather="settings" class="w-4 h-4 mr-2 text-blue-500"></i> Cài đặt bản thường
+                </h2>
+                
+                <div class="space-y-4">
+                    <!-- Nút 1: Config link (.conf) -->
+                    <div>
+                        <div class="flex items-center bg-gray-50 border border-gray-200 rounded-xl p-1.5 shadow-sm mb-2">
+                            <span class="flex-1 overflow-x-auto text-[11px] text-gray-500 px-2 whitespace-nowrap">https://raw.githubusercontent.com/haitran196hhh-ship-it/Locket_Module/main/Locket.conf</span>
+                            <button class="copy-btn shrink-0 bg-white hover:bg-gray-100 border border-gray-200 text-gray-700 p-2 rounded-lg transition-all" onclick="copyToClipboard('https://raw.githubusercontent.com/haitran196hhh-ship-it/Locket_Module/main/Locket.conf')">
+                                <i data-feather="copy" class="w-3.5 h-3.5"></i>
+                            </button>
+                        </div>
+                        <a href="shadowrocket://config/add/https://raw.githubusercontent.com/haitran196hhh-ship-it/Locket_Module/main/Locket.conf" class="w-full bg-gray-900 hover:bg-black text-white text-[13px] font-bold py-3 rounded-xl transition-all flex items-center justify-center gap-2 shadow-md">
+                            <i data-feather="download-cloud" class="w-4 h-4"></i>
+                            Thêm Config vào ShadowRocket
+                        </a>
+                    </div>
+
+                    <!-- Nút 3: Config DNS Trần Hải -->
+                    <div class="pt-2 border-t border-gray-100">
+                        <label class="block text-[11px] text-gray-500 font-bold mb-2 uppercase tracking-wide text-center">DNS Chống thu hồi (Khuyên dùng)</label>
+                        <a href="assets/LocketGold.mobileconfig" download class="w-full bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-amber-950 text-[13px] font-extrabold py-3 rounded-xl transition-all flex items-center justify-center gap-2 shadow-md shadow-amber-500/20">
+                            <i data-feather="shield" class="w-4 h-4"></i>
+                            Cài đặt DNS Trần Hải
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Copyright Footer -->
+    <div class="relative z-10 max-w-md mx-auto px-4 pb-8" data-aos="fade-up" data-aos-delay="300">
+        <div class="text-center text-xs text-gray-400/80 font-medium">
+            © <span id="currentYear">2026</span> <span class="text-blue-500 font-bold tracking-wide">Trần Hải (haitran196hhh)</span><br>
+            All rights reserved. Free for community.
+        </div>
     </div>
 
     <script>
         feather.replace();
+        AOS.init({ once: true, duration: 600 });
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-        // Hàm tạo file Config .conf chứa link ảnh
-        function generateConfigContent(imageUrl, frameName) {
-            return `#!name=Locket Gold Khung ${frameName}
-#!desc=Cấu hình Locket Gold tích hợp khung ảnh ${frameName}. Mod by Trần Hải.
+        var __toastTimer = null;
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(function() {
+                showToast("Đã sao chép đường dẫn!");
+            }).catch(function() {
+                showToast("Không thể tự động sao chép!");
+            });
+        }
+
+        function showToast(message) {
+            var content = document.getElementById('toastContent');
+            var textEl = document.getElementById('toastMessage');
+            if (!content || !textEl) return;
+            textEl.textContent = message;
+            
+            content.classList.remove('opacity-0', '-translate-y-4');
+            content.classList.add('opacity-100', 'translate-y-0');
+            
+            if (__toastTimer) clearTimeout(__toastTimer);
+            __toastTimer = setTimeout(function() {
+                content.classList.add('opacity-0', '-translate-y-4');
+                content.classList.remove('opacity-100', 'translate-y-0');
+            }, 2500);
+        }
+
+        // HÀM TẠO FILE CONFIG CHỨA KHUNG ẢNH
+        function installPresetFrame(frameUrl, frameName) {
+            // Hiển thị thông báo đang xử lý
+            showToast("Đang tạo cấu hình " + frameName + "...");
+
+            // Nội dung file .conf với link repository chuẩn của Trần Hải và nhúng $argument
+            const configContent = `#!name=Locket Gold Khung ${frameName}
+#!desc=Cấu hình Locket Gold tích hợp khung ảnh: ${frameName}. Mod by Trần Hải.
 #!author=Trần Hải
 
 [General]
@@ -88,77 +198,40 @@ tun-excluded-routes = 192.168.0.0/16, 10.0.0.0/8, 172.16.0.0/12
 
 [Header Rewrite]
 ^https?://api.revenuecat.com/.+/(receipts$|subscribers/?(.*?)*$) header-del x-revenuecat-etag
+^https?://api.revenuecat.com/.+/(receipts$|subscribers/?(.*?)*$) header-del X-RevenueCat-ETag
 
 [Script]
 revenuecat = type=http-response, pattern=^https:\\/\\/api\\.revenuecat\\.com\\/.+\\/(receipts$|subscribers\\/[^/]+$), script-path=https://raw.githubusercontent.com/haitran196hhh-ship-it/Locket_Module/main/js/Locket_DuyVinh09.js, requires-body=true, max-size=-1, timeout=60
 deleteHeader = type=http-request, pattern=^https:\\/\\/api\\.revenuecat\\.com\\/.+\\/(receipts|subscribers), script-path=https://raw.githubusercontent.com/haitran196hhh-ship-it/Locket_Module/main/js/deleteHeader.js, timeout=60
 
-# NẠP LINK ẢNH VÀO BIẾN ARGUMENT CHO FILE JS CHẠY
-locket_rc = type=http-response, pattern=^https:\\/\\/firebaseremoteconfig\\.googleapis\\.com\\/v1\\/projects\\/locket-4252a\\/.+, script-path=https://raw.githubusercontent.com/haitran196hhh-ship-it/Locket_Module/main/js/Locket_Unlocked.js, argument="${imageUrl}", requires-body=true, max-size=-1, timeout=60
+# Nạp trực tiếp link ảnh khung thông qua biến argument
+locket_rc = type=http-response, pattern=^https:\\/\\/firebaseremoteconfig\\.googleapis\\.com\\/v1\\/projects\\/locket-4252a\\/.+, script-path=https://raw.githubusercontent.com/haitran196hhh-ship-it/Locket_Module/main/js/Locket_Unlocked.js, argument="${frameUrl}", requires-body=true, max-size=-1, timeout=60
 
 [MITM]
 hostname = %APPEND% api.revenuecat.com, firebaseremoteconfig.googleapis.com
 `;
-        }
-
-        // Hàm ép trình duyệt tải file config
-        function downloadConfig(content, filename) {
-            const blob = new Blob([content], { type: 'text/plain' });
+            
+            // Đóng gói thành file Blob
+            const blob = new Blob([configContent], { type: 'text/plain' });
             const blobUrl = URL.createObjectURL(blob);
+            
+            // Tự động tải file về máy
             const a = document.createElement('a');
             a.href = blobUrl;
-            a.download = filename + ".conf";
+            // Xóa dấu cách để làm tên file chuẩn
+            const safeName = frameName.replace(/\s+/g, '_'); 
+            a.download = `Locket_${safeName}.conf`;
             document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(blobUrl);
-            setTimeout(() => alert("File đã tải về! Hãy mở file lên và chọn 'Mở bằng Shadowrocket' nhé!"), 500);
-        }
-
-        // Xử lý nút: Cài khung có sẵn
-        function installFrame(url, name) {
-            const config = generateConfigContent(url, name);
-            downloadConfig(config, "Locket_" + name.replace(/\s+/g, '_'));
-        }
-
-        // Xử lý tính năng TỰ TẢI ẢNH LÊN
-        document.getElementById('customFrameInput').addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (!file) return;
-
-            const uploadBtn = document.getElementById('uploadBtn');
-            const statusObj = document.getElementById('uploadStatus');
             
-            uploadBtn.classList.add('opacity-50', 'pointer-events-none');
-            statusObj.classList.remove('hidden');
-
-            const formData = new FormData();
-            formData.append('image', file);
-            
-            // Dùng ImgBB API để up ảnh tự động (API Key Public dùng tạm, anh nên tự tạo 1 acc ImgBB lấy key thay vào đây)
-            fetch(`https://api.imgbb.com/1/upload?key=3f044bb7cc0a786259ce3c962f22b8ea`, {
-                method: 'POST',
-                body: formData
-            })
-            .then(res => res.json())
-            .then(data => {
-                uploadBtn.classList.remove('opacity-50', 'pointer-events-none');
-                statusObj.classList.add('hidden');
-                
-                if(data.success) {
-                    // Up ảnh xong -> Tạo file config luôn
-                    const config = generateConfigContent(data.data.url, "CuaBan");
-                    downloadConfig(config, "Locket_CustomFrame");
-                } else {
-                    alert('Lỗi up ảnh: ' + data.error.message);
-                }
-            })
-            .catch(err => {
-                uploadBtn.classList.remove('opacity-50', 'pointer-events-none');
-                statusObj.classList.add('hidden');
-                alert('Có lỗi mạng khi up ảnh!');
-            });
-        });
+            setTimeout(() => {
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(blobUrl);
+                setTimeout(() => {
+                    showToast("Hãy bấm Mở / Lưu vào Shadowrocket nhé!");
+                }, 1000);
+            }, 500);
+        }
     </script>
 </body>
 </html>
