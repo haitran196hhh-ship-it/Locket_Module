@@ -1,0 +1,7 @@
+{
+  "name": "locket-module-generator",
+  "version": "1.0.0",
+  "description": "Trang web tạo module Locket động by Trần Hải",
+  "private": true,
+  "dependencies": {}
+}
