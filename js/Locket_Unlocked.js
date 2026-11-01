@@ -90,7 +90,7 @@ if (ua.includes("Locket")) {
         sentry_profiles_sample_rate: "0"
     });
 
-    // ============================================================
+   // ============================================================
     // 3. CAMERA, VIDEO, FILTERS & UPLOAD QUALITY
     // ============================================================
     Object.assign(obj.entries, {
@@ -107,21 +107,21 @@ if (ua.includes("Locket")) {
             telephoto: true,
             srgb: true,
             lanczos: true,
-            quality_mbps: 0.6,
-            qualityMbps: 0.6
+            quality_mbps: 3.0, // Đã nâng cấp từ 0.6 lên 3.0 Mbps cho nét căng
+            qualityMbps: 3.0
         }),
         camera_roll: JSON.stringify({
-            gold_max_duration: 30.0,
-            goldMaxDuration: 30.0,
-            video_max_duration: 30.0,
-            videoMaxDuration: 30.0,
-            max_duration: 30.0,
-            maxDuration: 30.0,
-            trim_max_duration: 30.0,
-            trimMaxDuration: 30.0,
-            camera_roll_max_duration: 30.0,
-            quality_mbps: 0.6,
-            qualityMbps: 0.6,
+            gold_max_duration: 60.0, // Nâng lên 60s
+            goldMaxDuration: 60.0,
+            video_max_duration: 60.0, // Nâng lên 60s
+            videoMaxDuration: 60.0,
+            max_duration: 60.0,
+            maxDuration: 60.0,
+            trim_max_duration: 60.0, // Cho phép cắt video 60s
+            trimMaxDuration: 60.0,
+            camera_roll_max_duration: 60.0, 
+            quality_mbps: 3.0, // Nâng chất lượng upload từ album
+            qualityMbps: 3.0,
             flash_button: true
         }),
         live_photos: JSON.stringify({
@@ -165,8 +165,8 @@ if (ua.includes("Locket")) {
         audio_session_deactivation_enabled: "true",
         zoom_enabled: "true",
         upload_main: "false",
-        upload_main_image_quality: "0.6",
-        upload_main_image_size: "1440",
+        upload_main_image_quality: "1.0", // Nâng từ 0.6 lên 1.0 (Giữ chất lượng gốc)
+        upload_main_image_size: "2048",   // Nâng từ 1440 lên 2048px (Độ phân giải 2K)
         upload_thumbnail_image_quality: "0.8",
         upload_thumbnail_image_size: "1020"
     });
@@ -276,7 +276,7 @@ if (ua.includes("Locket")) {
             uid: dynamicUid,
             url: customFrameUrl,
             use_local_time_zone: true,
-            placement: "below",
+            placement: "overlay",
             start_at: "2020-01-01T00:00:00",
             end_at: "2099-12-31T23:59:59"
         }),
