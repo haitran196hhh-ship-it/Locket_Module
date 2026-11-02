@@ -1,33 +1,47 @@
 // ============================================================
-// Locket Remote Config Rewrite - Bản Cực Hạn (Video 60s, Khung Động, Full Filter & Đầy Đủ Captions)
-// Mod by: TranHai307
+// Locket Remote Config Rewrite - Bản Cực Hạn All-in-One
+// (Video 60s, Khung Động, Full Filter & Toàn Bộ Captions VIP)
+// Mod by: TranHai307 (@trh_ltg)
 // ============================================================
 
 var ua = $request.headers["User-Agent"] || $request.headers["user-agent"] || "";
-var obj = JSON.parse($response.body);
+var obj = {};
+try {
+    obj = JSON.parse($response.body || "{}");
+} catch (e) {
+    obj = {};
+}
 
-if (ua.includes("Locket")) {
+if (ua.includes("Locket") || obj.entries || obj.state) {
     obj.Attention = "Chúc mừng bạn! Bản Mod độc quyền bởi TranHai307!";
+    obj.state = "UPDATE";
     obj.entries = obj.entries || {};
 
-    // Nhận diện đường dẫn Khung Ảnh từ argument (Hỗ trợ cả link trực tiếp và frame=...)
+    // ============================================================
+    // NHẬN DIỆN LINK KHUNG ẢNH TỪ ARGUMENT (HỖ TRỢ MỌI ĐỊNH DẠNG)
+    // ============================================================
     var rawArg = (typeof $argument !== "undefined" && $argument !== null) ? String($argument).trim() : "";
-    var customFrameUrl = "https://raw.githubusercontent.com/haitran196hhh-ship-it/Locket_Module/main/assets/custom_frame.png";
-    
-    if (rawArg.includes("frame=")) {
-        var extracted = rawArg.split("frame=")[1].split("&")[0].replace(/^"|"$/g, '').trim();
-        try {
-            customFrameUrl = decodeURIComponent(extracted);
-        } catch (e) {
-            customFrameUrl = extracted;
+    var customFrameUrl = "https://cdn.jsdelivr.net/gh/haitran196hhh-ship-it/Locket_Module@main/assets/custom_frame.png";
+
+    if (rawArg !== "") {
+        var cleaned = rawArg.replace(/^["']|["']$/g, "").trim();
+        if (cleaned.indexOf("frame=") !== -1) {
+            cleaned = cleaned.split("frame=")[1].split("&")[0].replace(/^["']|["']$/g, "").trim();
         }
-    } else if (rawArg.startsWith("http")) {
-        var cleanUrl = rawArg.replace(/^"|"$/g, '').trim();
         try {
-            customFrameUrl = decodeURIComponent(cleanUrl);
-        } catch (e) {
-            customFrameUrl = cleanUrl;
+            cleaned = decodeURIComponent(cleaned);
+        } catch (e) {}
+        if (cleaned.indexOf("http") === 0) {
+            customFrameUrl = cleaned;
         }
+    }
+
+    // Tự động chuyển link GitHub Raw sang jsDelivr CDN để Widget iOS tải khung tức thì không bị lỗi trắng
+    if (customFrameUrl.indexOf("raw.githubusercontent.com/haitran196hhh-ship-it/Locket_Module/main/") !== -1) {
+        customFrameUrl = customFrameUrl.replace(
+            "https://raw.githubusercontent.com/haitran196hhh-ship-it/Locket_Module/main/",
+            "https://cdn.jsdelivr.net/gh/haitran196hhh-ship-it/Locket_Module@main/"
+        );
     }
 
     var dynamicUid = "frame_" + Date.now();
@@ -68,19 +82,19 @@ if (ua.includes("Locket")) {
             profile_banner: true
         }),
         feature_discovery_popup_config: JSON.stringify({
-            tag: "LOCKET GOLD",
+            tag: "LOCKET GOLD • TRANHAI307",
             tag_gradient: true,
             tag_style: "gold_gradient",
-            title: "Lên Locket Gold rồi đó BẠN 😎",
+            title: "Lên Locket Gold rồi NHA 😎",
             feature_set: [
                 {
                     title: "CHÀO MẤY TÌNH IU ✨",
-                    body: " TRẦN HẢI NHAA 💛",
+                    body: "TRẦN HẢI NÈ BÉ IU 💛 (TikTok: @trh_ltg)",
                     imageURL: customFrameUrl
                 }
             ],
             primary_button_title: "Xong",
-            campaign: "locket_gold_welcome_v3",
+            campaign: "locket_gold_welcome_" + dynamicUid,
             start_at: "2020-01-01T00:00:00",
             end_at: "2099-12-31T23:59:59",
             use_local_time_zone: true
@@ -112,7 +126,7 @@ if (ua.includes("Locket")) {
     });
 
     // ============================================================
-    // 3. ÉP CHẤT LƯỢNG VIDEO SIÊU NÉT 15Mbps & DÀI 60 GIÂY + FULL FILTER
+    // 3. ÉP CHẤT LƯỢNG VIDEO SIÊU NÉT 15Mbps, DÀI 60 GIÂY & FILTER
     // ============================================================
     Object.assign(obj.entries, {
         camera: JSON.stringify({
@@ -132,13 +146,13 @@ if (ua.includes("Locket")) {
             qualityMbps: 15.0
         }),
         camera_roll: JSON.stringify({
-            gold_max_duration: 60.0, 
+            gold_max_duration: 60.0,
             goldMaxDuration: 60.0,
-            video_max_duration: 60.0, 
+            video_max_duration: 60.0,
             videoMaxDuration: 60.0,
             max_duration: 60.0,
             maxDuration: 60.0,
-            trim_max_duration: 60.0, 
+            trim_max_duration: 60.0,
             trimMaxDuration: 60.0,
             camera_roll_max_duration: 60.0,
             quality_mbps: 15.0,
@@ -150,9 +164,9 @@ if (ua.includes("Locket")) {
             allows_custom_filters: true,
             show_filter_button: true,
             sheet_enabled: true,
-            open_sheet_immediately: true, 
-            force_fetch_all_filters: true, 
-            precache_filters: true,        
+            open_sheet_immediately: false,
+            force_fetch_all_filters: true,
+            precache_filters: true,
             sheet_filters: [
                 { title: { en: "Goofy" }, filter_ids: ["okay_wig", "influencer", "looks_maxxing", "toothless", "bye_brows"] },
                 { title: { en: "Looks" }, filter_ids: ["bowling_ball", "blonde_bleached", "beard", "bob_cut", "buns", "tatted", "mohawk", "braces", "bye_brows"] },
@@ -162,11 +176,11 @@ if (ua.includes("Locket")) {
                 { title: { en: "Holidays" }, filter_ids: ["easter_bunney_cutout", "easter_chick_cutout", "bearded", "leprechaun", "lucky_face", "sweet_hearts", "elf_cutout", "santa_cutout", "frosty"] }
             ],
             picker_filters: [
-                "cutesy", "sticker_face", "flower_crown", "love_bug",
-                "disco_lights", "cash_money", "happy_birthday", "slimed", "princess",
                 "okay_wig", "influencer", "looks_maxxing", "toothless", "bye_brows",
                 "bowling_ball", "blonde_bleached", "beard", "bob_cut", "buns",
-                "tatted", "mohawk", "braces", "wedding", "cowboy_cowgirl", "giraffe",
+                "tatted", "mohawk", "braces", "slimed", "princess",
+                "disco_lights", "cash_money", "happy_birthday", "cutesy", "sticker_face",
+                "flower_crown", "love_bug", "wedding", "cowboy_cowgirl", "giraffe",
                 "clown", "easter_bunney_cutout", "easter_chick_cutout", "bearded", "leprechaun",
                 "lucky_face", "sweet_hearts", "elf_cutout", "santa_cutout", "frosty"
             ]
@@ -181,9 +195,9 @@ if (ua.includes("Locket")) {
         camera_microphone_enabled: "true",
         audio_session_deactivation_enabled: "true",
         zoom_enabled: "true",
-        upload_main: "true", 
-        upload_main_image_quality: "1.0", 
-        upload_main_image_size: "2048", 
+        upload_main: "true",
+        upload_main_image_quality: "1.0",
+        upload_main_image_size: "2048",
         upload_thumbnail_image_quality: "0.9",
         upload_thumbnail_image_size: "1080"
     });
@@ -353,7 +367,7 @@ if (ua.includes("Locket")) {
     });
 
     // ============================================================
-    // 8. OVERLAY & CUSTOM CAPTIONS (KHÔI PHỤC ĐẦY ĐỦ 100% CAPTION CŨ)
+    // 8. OVERLAY & SIÊU BỘ SƯU TẬP CAPTIONS (CŨ + MỚI ĐẦY ĐỦ 100%)
     // ============================================================
     Object.assign(obj.entries, {
         overlay_navigator_enabled: "true",
@@ -368,6 +382,27 @@ if (ua.includes("Locket")) {
             "good_morning", "goodnight", "ootd", "miss_you", "custom", "halloween_2026"
         ]),
         overlay_items: JSON.stringify([
+            {
+                section: "✨ Hiệu Ứng Kính Mờ & Visual VIP (TranHai307)",
+                items: [
+                    { overlay_id: "caption:danh_gia_5_sao", source: "remote", caption: { background: { colors: ["#F59E0B", "#D97706"] }, icon: { data: "⭐", type: "emoji" }, max_lines: 1, text: "Đánh giá 5 sao", text_color: "#FFFFFF", type: "static_content" } },
+                    { overlay_id: "caption:visual_10_diem", source: "remote", caption: { background: { colors: ["#6366F1", "#A855F7", "#EC4899"], material_blur: "regular" }, icon: { type: "image", data: "https://img.icons8.com/fluency/96/sparkling.png", source: "url" }, max_lines: 1, text: "Visual 10/10 không có nhưng ✨", text_color: "#FFFFFF", type: "static_content" } },
+                    { overlay_id: "caption:glass_chill_vibe", source: "remote", caption: { background: { colors: ["#1E293B", "#334155"], material_blur: "regular" }, icon: { type: "image", data: "https://img.icons8.com/fluency/96/headphones.png", source: "url" }, max_lines: 1, text: "Chế độ Không Làm Phiền 🎧", text_color: "#F8FAFC", type: "static_content" } },
+                    { overlay_id: "caption:aura_vo_cuc", source: "remote", caption: { background: { colors: ["#0F172A", "#1D4ED8", "#38BDF8"] }, icon: { type: "image", data: "https://img.icons8.com/fluency/96/lightning-bolt.png", source: "url" }, max_lines: 1, text: "+999.999 Aura Bá Khí ⚡", text_color: "#FFFFFF", type: "static_content" } },
+                    { overlay_id: "caption:camera_check_vip", source: "remote", caption: { background: { colors: ["#FF416C", "#FF4B2B"] }, icon: { type: "image", data: "https://img.icons8.com/fluency/96/compact-camera.png", source: "url" }, max_lines: 1, text: "Cam thường chấp hết 📸", text_color: "#FFFFFF", type: "static_content" } }
+                ]
+            },
+            {
+                section: "🏐 Thể Thao, Gym & Đảo Phú Quý 🌊",
+                items: [
+                    { overlay_id: "caption:gym_body_check", source: "remote", caption: { background: { colors: ["#111827", "#374151", "#EF4444"] }, icon: { data: "💪", type: "emoji" }, max_lines: 1, text: "Gym Check - Độ body thành công 🔥", text_color: "#FFFFFF", type: "static_content" } },
+                    { overlay_id: "caption:bong_chuyen_passion", source: "remote", caption: { background: { colors: ["#1E3A8A", "#3B82F6", "#FBBF24"] }, icon: { data: "🏐", type: "emoji" }, max_lines: 1, text: "Đam mê bóng chuyền bất diệt 🏐⚡", text_color: "#FFFFFF", type: "static_content" } },
+                    { overlay_id: "caption:bong_da_chay_het_minh", source: "remote", caption: { background: { colors: ["#064E3B", "#10B981"] }, icon: { data: "⚽", type: "emoji" }, max_lines: 1, text: "Ra sân là cháy hết mình ⚽🏆", text_color: "#FFFFFF", type: "static_content" } },
+                    { overlay_id: "caption:phu_quy_island_vibe", source: "remote", caption: { background: { colors: ["#0284C7", "#38BDF8", "#BAE6FD"] }, icon: { data: "🏝️", type: "emoji" }, max_lines: 1, text: "Phú Quý Island - Gió biển cực chill 🌊", text_color: "#0C4A6E", type: "static_content" } },
+                    { overlay_id: "caption:hoang_hon_bien", source: "remote", caption: { background: { colors: ["#EA580C", "#F97316", "#FDE047"] }, icon: { data: "🌅", type: "emoji" }, max_lines: 1, text: "Hoàng hôn trên đảo đẹp xỉu 🌅", text_color: "#FFFFFF", type: "static_content" } },
+                    { overlay_id: "caption:nap_protein", source: "remote", caption: { background: { colors: ["#14532D", "#22C55E"] }, icon: { data: "🍗", type: "emoji" }, max_lines: 1, text: "Đến giờ nạp Protein rồi anh em 🍗🥚", text_color: "#FFFFFF", type: "static_content" } }
+                ]
+            },
             {
                 section: "🏫 Học Sinh Ngô Quyền & 11A2",
                 items: [
