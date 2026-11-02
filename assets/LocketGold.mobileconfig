@@ -25,7 +25,6 @@
                     <string>api.rc-backup.com</string>
                     <string>api2.amplitude.com</string>
                     <string>oy24bn.skadsdkless.appsflyersdk.com</string>
-                    <string>firebaseremoteconfig.googleapis.com</string>
                     <string>appsflyersdk.com</string>
                     <string>ingest.sentry.io</string>
                 </array>
@@ -62,7 +61,7 @@
         </dict>
     </array>
     <key>PayloadDescription</key>
-    <string>Hồ sơ cấu hình VIP chặn thu hồi Locket Gold vĩnh viễn.&#10;Đã Taa lên Gold rồi đó nhaa , nhớ tên Trần Hải và vô follow đó nha kkkkk&#10;Thương hiệu: TranHai307 | TikTok: @trh_ltg</string>
+    <string>Hồ sơ cấu hình VIP chặn thu hồi Locket Gold vĩnh viễn.&#10;Thương hiệu: TranHai307 | TikTok: @trh_ltg</string>
     <key>PayloadDisplayName</key>
     <string>Locket Gold 💛 (TranHai307)</string>
     <key>PayloadIdentifier</key>
