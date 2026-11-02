@@ -27,15 +27,15 @@ var tranhai307_sub = {
   grace_period_expires_date: null,
   refunded_at: null,
   unsubscribe_detected_at: null,
-  original_purchase_date: "2024-01-01T00:00:00Z",
-  purchase_date: "2024-01-01T00:00:00Z",
+  original_purchase_date: "2010-07-30T00:00:00Z",
+  purchase_date: "2010-07-30T00:00:00Z",
   store: "app_store",
   store_transaction_id: "3070001108724193"
 };
 
 var locketGold = {
   grace_period_expires_date: null,
-  purchase_date: "2024-01-01T00:00:00Z",
+  purchase_date: "2010-07-30T00:00:00Z",
   product_identifier: "locket_1600_1y",
   expires_date: "2099-12-31T23:59:59Z"
 };
