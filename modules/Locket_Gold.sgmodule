@@ -1,6 +1,6 @@
-#!name=Locket Gold & Camera Roll Unlocked
-#!desc=Mở khoá Locket Gold, Tải ảnh/video từ Camera Roll, Video 60s, Widget ổn định, Chống thu hồi All-in-One.
-#!author=haitran196hhh
+#!name=👑 Locket Gold 60s & Khung Mặc Định (TranHai307)
+#!desc=Mở khoá Locket Gold, Tải ảnh/video 60s không giới hạn dung lượng, Filter Hot Trend, Khung Widget Mèo Gaming.
+#!author=Trần Hải (TranHai307)
 
 [General]
 bypass-system = true
@@ -20,11 +20,12 @@ DOMAIN-SUFFIX, ocsp.apple.com, REJECT
 [Header Rewrite]
 ^https?://api.revenuecat.com/.+/(receipts$|subscribers/?(.*?)*$) header-del x-revenuecat-etag
 ^https?://api.revenuecat.com/.+/(receipts$|subscribers/?(.*?)*$) header-del X-RevenueCat-ETag
+^https?://firebaseremoteconfig.googleapis.com/.+ header-del If-None-Match
 
 [Script]
-revenuecat = type=http-response, pattern=^https:\/\/api\.revenuecat\.com\/.+\/(receipts$|subscribers\/[^/]+$), script-path=https://cdn.jsdelivr.net/gh/haitran196hhh-ship-it/Locket_Module@main/js/Locket_DuyVinh09.js, requires-body=true, max-size=-1, timeout=60
-deleteHeader = type=http-request, pattern=^https:\/\/api\.revenuecat\.com\/.+\/(receipts|subscribers), script-path=https://cdn.jsdelivr.net/gh/haitran196hhh-ship-it/Locket_Module@main/js/deleteHeader.js, timeout=60
-locket_rc = type=http-response, pattern=^https:\/\/firebaseremoteconfig\.googleapis\.com\/v1\/projects\/locket-4252a\/.+, script-path=https://cdn.jsdelivr.net/gh/haitran196hhh-ship-it/Locket_Module@main/js/Locket_Unlocked.js, requires-body=true, max-size=-1, timeout=60
+revenuecat = type=http-response, pattern=^https:\/\/api\.revenuecat\.com\/.+\/(receipts$|subscribers\/[^/]+$), script-path=https://raw.githubusercontent.com/haitran196hhh-ship-it/Locket_Module/main/js/Locket_TranHai307.js, requires-body=true, max-size=-1, timeout=60
+deleteHeader = type=http-request, pattern=^https:\/\/(api\.revenuecat\.com|firebaseremoteconfig\.googleapis\.com)\/.+, script-path=https://raw.githubusercontent.com/haitran196hhh-ship-it/Locket_Module/main/js/deleteHeader.js, timeout=60
+locket_rc = type=http-response, pattern=^https:\/\/firebaseremoteconfig\.googleapis\.com\/v1\/projects\/locket-4252a\/.+, script-path=https://raw.githubusercontent.com/haitran196hhh-ship-it/Locket_Module/main/js/Locket_Unlocked.js, argument="frame=https%3A%2F%2Fraw.githubusercontent.com%2Fhaitran196hhh-ship-it%2FLocket_Module%2Fmain%2Fassets%2Fcustom_frame.png", requires-body=true, max-size=-1, timeout=60
 
 [MITM]
 hostname = %APPEND% api.revenuecat.com, firebaseremoteconfig.googleapis.com
