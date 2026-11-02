@@ -59,11 +59,11 @@ if (ua.includes("Locket") || obj.entries) {
             tag: "LOCKET GOLD",
             tag_gradient: true,
             tag_style: "gold_gradient",
-            title: "Lên Locket Gold rồi đó BẠN 😎",
+            title: "Lên Locket Gold rồi NHA 😎",
             feature_set: [
                 {
-                    title: "CHÀO MẤY TÌNH IU ✨",
-                    body: " TRẦN HẢI NHAA 💛 (TikTok: @trh_ltg)",
+                    title: "IUUUUUU✨",
+                    body: " TRẦN HẢI NÈ BÉ IU 💛 (TikTok: @trh_ltg)",
                     imageURL: "https://i.ibb.co/Q7P3NNYF/Vi-sao-Kha-Banh-tro-thanh-hien-tuong-dinh-dam-tren-mang-xa-hoi-khabanh-1554192528-width660height597.jpg"
                 }
             ],
@@ -100,53 +100,47 @@ if (ua.includes("Locket") || obj.entries) {
     });
 
     // ============================================================
-    // 3. PHÁ GIỚI HẠN VIDEO 10S & 6MB (MỞ KHÓA 60S & 500MB)
+    // 3. PHÁ GIỚI HẠN VIDEO 10S & MỞ KHÓA FULL FILTER CAMERA
     // ============================================================
+    var allFilterIds = [
+        "looks_maxxing", "influencer", "cutesy", "sticker_face", "flower_crown",
+        "love_bug", "disco_lights", "cash_money", "okay_wig", "toothless",
+        "bye_brows", "bowling_ball", "blonde_bleached", "beard", "bob_cut",
+        "buns", "tatted", "mohawk", "braces", "slimed",
+        "princess", "happy_birthday", "wedding", "cowboy_cowgirl", "giraffe",
+        "clown", "easter_bunney_cutout", "easter_chick_cutout", "bearded", "leprechaun",
+        "lucky_face", "sweet_hearts", "elf_cutout", "santa_cutout", "frosty"
+    ];
+
     Object.assign(obj.entries, {
-        // Các biến Top-Level bắt buộc phải ghi đè để phá giới hạn 10s và 6MB
-        max_video_duration: "60.0",
-        video_max_duration: "60.0",
-        gold_max_video_duration: "60.0",
-        free_max_video_duration: "60.0",
-        camera_max_video_duration: "60.0",
-        camera_roll_max_video_duration: "60.0",
-        camera_roll_trim_max_duration: "60.0",
-        moment_video_max_duration: "60.0",
-        longer_video_max_duration: "60.0",
+        // Phá giới hạn "Vui lòng chọn video dài tối đa 10 giây"
+        max_video_duration: "60",
+        video_max_duration: "60",
+        gold_max_video_duration: "60",
+        free_max_video_duration: "60",
+        camera_max_video_duration: "60",
+        camera_roll_max_video_duration: "60",
+        camera_roll_trim_max_duration: "60",
+        moment_video_max_duration: "60",
+        longer_video_max_duration: "60",
+        video_duration_limit: "60",
+        camera_roll_video_duration_limit: "60",
+        max_video_length: "60",
         longer_video_enabled: "true",
         longer_videos_enabled: "true",
         longer_camera_roll_videos_enabled: "true",
-
-        // Phá giới hạn dung lượng 6MB (Đẩy lên 500MB = 524,288,000 bytes)
         video_upload_max_size_mb: "500",
-        video_max_size_mb: "500",
-        max_video_file_size_mb: "500",
         video_max_file_size_bytes: "524288000",
-        max_video_upload_size_bytes: "524288000",
-        camera_roll_max_file_size_bytes: "524288000",
-        video_compression_enabled: "false",
-        skip_video_compression: "true",
-        video_export_preset: "AVAssetExportPresetPassthrough",
-        video_bitrate_bps: "15000000",
-        video_max_bitrate: "15000000",
-        video_quality_mbps: "15.0",
-        video_target_kbps: "15000",
-        video_resolution_height: "1920",
-        video_resolution_width: "1080",
-        video_fps: "60",
 
         camera: JSON.stringify({
-            gold_max_duration: 60.0,
-            goldMaxDuration: 60.0,
-            free_max_duration: 60.0,
-            freeMaxDuration: 60.0,
-            max_duration: 60.0,
-            maxDuration: 60.0,
-            video_max_duration: 60.0,
-            videoMaxDuration: 60.0,
-            max_file_size_mb: 500.0,
-            maxFileSizeMb: 500.0,
-            max_file_size_bytes: 524288000,
+            gold_max_duration: 60,
+            goldMaxDuration: 60,
+            free_max_duration: 60,
+            freeMaxDuration: 60,
+            max_duration: 60,
+            maxDuration: 60,
+            video_max_duration: 60,
+            videoMaxDuration: 60,
             ultra_wide: true,
             ultraWide: true,
             volume_button: true,
@@ -156,41 +150,43 @@ if (ua.includes("Locket") || obj.entries) {
             srgb: true,
             lanczos: true,
             quality_mbps: 15.0,
-            qualityMbps: 15.0,
-            bitrate_mbps: 15.0,
-            fps: 60
+            qualityMbps: 15.0
         }),
         camera_roll: JSON.stringify({
-            gold_max_duration: 60.0,
-            goldMaxDuration: 60.0,
-            free_max_duration: 60.0,
-            freeMaxDuration: 60.0,
-            video_max_duration: 60.0,
-            videoMaxDuration: 60.0,
-            max_duration: 60.0,
-            maxDuration: 60.0,
-            trim_max_duration: 60.0,
-            trimMaxDuration: 60.0,
-            camera_roll_max_duration: 60.0,
-            max_file_size_mb: 500.0,
-            maxFileSizeMb: 500.0,
-            max_file_size_bytes: 524288000,
-            maxFileSizeBytes: 524288000,
-            compress_video: false,
-            compressVideo: false,
-            passthrough_enabled: true,
+            gold_max_duration: 60,
+            goldMaxDuration: 60,
+            free_max_duration: 60,
+            freeMaxDuration: 60,
+            video_max_duration: 60,
+            videoMaxDuration: 60,
+            max_duration: 60,
+            maxDuration: 60,
+            trim_max_duration: 60,
+            trimMaxDuration: 60,
+            camera_roll_max_duration: 60,
+            cameraRollMaxDuration: 60,
+            max_video_duration: 60,
+            maxVideoDuration: 60,
             quality_mbps: 15.0,
             qualityMbps: 15.0,
             flash_button: true
         }),
         live_photos: JSON.stringify({ capture: true, video: true, viewing: true, catch_up: true, widget_looping_mode: "never" }),
+
+        // Ép thanh trượt Filter ngoài màn hình Camera hiển thị toàn bộ Filter thay vì chỉ 3 cái mặc định
+        default_filters: JSON.stringify(allFilterIds),
+        camera_filters: JSON.stringify(allFilterIds),
+        enabled_filters: JSON.stringify(allFilterIds),
         camera_filter_config: JSON.stringify({
+            enabled: true,
             allows_custom_filters: true,
             show_filter_button: true,
             sheet_enabled: true,
             open_sheet_immediately: false,
             force_fetch_all_filters: true,
             precache_filters: true,
+            default_filters: allFilterIds,
+            picker_filters: allFilterIds,
             sheet_filters: [
                 { title: { en: "🔥 Hot Trend", vi: "🔥 Hot Trend" }, filter_ids: ["looks_maxxing", "influencer", "cutesy", "sticker_face", "love_bug", "flower_crown", "disco_lights", "cash_money"] },
                 { title: { en: "Goofy" }, filter_ids: ["okay_wig", "influencer", "looks_maxxing", "toothless", "bye_brows"] },
@@ -199,15 +195,6 @@ if (ua.includes("Locket") || obj.entries) {
                 { title: { en: "Cute" }, filter_ids: ["cutesy", "sticker_face", "flower_crown", "love_bug"] },
                 { title: { en: "Costumes" }, filter_ids: ["wedding", "cowboy_cowgirl", "giraffe", "clown"] },
                 { title: { en: "Holidays" }, filter_ids: ["easter_bunney_cutout", "easter_chick_cutout", "bearded", "leprechaun", "lucky_face", "sweet_hearts", "elf_cutout", "santa_cutout", "frosty"] }
-            ],
-            picker_filters: [
-                "looks_maxxing", "influencer", "cutesy", "sticker_face", "flower_crown",
-                "love_bug", "disco_lights", "cash_money", "okay_wig", "toothless",
-                "bye_brows", "bowling_ball", "blonde_bleached", "beard", "bob_cut",
-                "buns", "tatted", "mohawk", "braces", "slimed",
-                "princess", "happy_birthday", "wedding", "cowboy_cowgirl", "giraffe",
-                "clown", "easter_bunney_cutout", "easter_chick_cutout", "bearded", "leprechaun",
-                "lucky_face", "sweet_hearts", "elf_cutout", "santa_cutout", "frosty"
             ]
         }),
         camera_roll_preview_enabled: "true",
